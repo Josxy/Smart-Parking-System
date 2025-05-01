@@ -1,5 +1,5 @@
 # Smart Parking System
-##Terminology and Concepts
+## Terminology and Concepts
 Definition: 
 
 * Goal: 
@@ -10,7 +10,7 @@ Definition:
 * Activities:
 * Delay:
 
-##Components
+## Components
 
 Time Advance Algorithm
 
@@ -19,6 +19,6 @@ Arrival event:
 Service completion event:
 Stopping event:
 
-##Simulation Program
+## Simulation Program
 
-##Verification and Validation
+## Verification and Validation
