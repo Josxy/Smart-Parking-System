@@ -12,12 +12,12 @@ Definition:
 
 ## Components
 
-Time Advance Algorithm
+### Time Advance Algorithm
 
-Future Evenets
-Arrival event:
-Service completion event:
-Stopping event:
+* Future Evenets
+* Arrival event:
+* Service completion event:
+* Stopping event:
 
 ## Simulation Program
 
