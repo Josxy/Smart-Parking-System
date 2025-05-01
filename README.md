@@ -35,7 +35,7 @@ Event-scheduling approach (variable time advance)
 **Future Evenets**
 * **Arrival event:**??
 * **Service completion event:**??
-* **Stopping event:**?? kalani anlamadim
+* **Stopping event:**?? kalani anlamadim bunlari rapora mi koymaliyiz buraya mi
 
 ## Simulation Program
 
