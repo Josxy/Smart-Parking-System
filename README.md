@@ -2,13 +2,13 @@
 ##Terminology and Concepts
 Definition: 
 
-*Goal: 
-*Random variables:
-*System State: 
-*Entitites: 
-*Events:
-*Activities:
-*Delay:
+* Goal: 
+* Random variables:
+* System State: 
+* Entitites: 
+* Events:
+* Activities:
+* Delay:
 
 ##Components
 
