@@ -119,3 +119,14 @@ Instead of progressing in fixed time intervals, the simulation jumps directly to
     * Throughput (vehicles served)
   * Output results in a structured format (e.g., table, log, graph).
 ## Verification and Validation
+1. Verification
+  1. Goals
+    * Confirm that the simulation logic works as designed.
+    * Ensure events are triggered and processed properly.
+    * Detect and fix programming or logical errors.
+  2. Techniques Used
+    * Tracing and Debugging: Print and inspect the state of system variables (e.g., slot status, queue lengths) after each event to ensure proper transitions.
+    * Step-by-Step Manual Simulation: Simulate a small number of vehicles manually and compare with the output of the program.
+    * Code Review: Walk through event routines to check for consistency with the system logic.
+    * Boundary Testing: Test edge cases like full parking lot, no incoming vehicles, and maximum queue length.
+1. Validation
