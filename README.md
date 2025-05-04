@@ -41,20 +41,19 @@ Events are stored in a priority queue, with the earliest event always processed 
 The simulation clock advances using a next-event time advance mechanism.
 Instead of progressing in fixed time intervals, the simulation jumps directly to the time of the next scheduled event from the FEL.
 ### Event scheduling Approach
-1. Initialize
-  * The simulation starts by scheduling the first vehicle arrival and the simulation end event. 
-2. Process events
-  The simulation continuously:
+1. **Initialize**  
+   The simulation starts by scheduling the first vehicle arrival and the simulation end event.
 
-    * Retrieves the next event from the FEL,
+2. **Process events**  
+   The simulation continuously:  
+   * Retrieves the next event from the FEL,  
+   * Advances the clock to the event’s time,  
+   * Executes the event logic.
 
-    * Advances the clock to the event’s time,
-
-    * Executes the event logic.
-3. Event execution
-Each event updates the state of the parking lot and may schedule new events. For example:
-  * A vehicle arrival checks for free slots. If available, a parking start event is scheduled; otherwise, the vehicle joins the waiting queue.
-  * A parking end (departure) frees up a slot and, if there are waiting vehicles, triggers the next parking start e
+3. **Event execution**  
+   Each event updates the state of the parking lot and may schedule new events. For example:  
+   * A vehicle arrival checks for free slots. If available, a parking start event is scheduled; otherwise, the vehicle joins the waiting queue.  
+   * A parking end (departure) frees up a slot and, if there are waiting vehicles, triggers the next parking start event.
 **Future Evenets**
 * **Arrival event:**??
 * **Service completion event:**??
