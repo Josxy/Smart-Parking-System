@@ -33,10 +33,23 @@ Goal of this project is to simulate Smart Parking System that monitors parking s
   * Entry Queue: A list of vehicles waiting for a parking slot.
   * Parking Slot List: Tracks the status (free or occupied) of each parking space. 
 ### Future Event List (FEL)
-Each evenet includes:
-  * Type of event
-  * Scheduled time of event
-Events are stored in a priority queue, with the earliest event always processed next. This ensures that all activities within the simulation occur in the correct order over time.
+  1. Arrival Event
+  * This event represents a vehicle arriving at the parking facility.
+  * Initially, an arrival event is scheduled at time 0.
+  * When the simulation clock reaches the time of an arrival event, a new vehicle is introduced into the system.
+  * After processing the current arrival, a new arrival event is scheduled based on the interarrival time distribution.
+
+  2. Service Completion Event
+  * This event represents the end of a vehicle’s parking duration.
+  * It is scheduled when a vehicle successfully occupies a parking slot.
+  * When triggered, it frees up the corresponding slot and may initiate parking for the next vehicle in the waiting queue (if any).
+
+  3. Stopping Event
+  * This event determines when the simulation should stop.
+  * It is scheduled at the beginning (time 0) for a future time TE, which could be:
+    * A fixed simulation run time (e.g., simulate 8 hours), or
+    * A condition-based stop, such as after a certain number of vehicles have been served or a performance metric stabilizes.
+  * Once this event is triggered, the simulation terminates and results are recorded.
 ### Time Advance Mechanism
 The simulation clock advances using a next-event time advance mechanism.
 Instead of progressing in fixed time intervals, the simulation jumps directly to the time of the next scheduled event from the FEL.
