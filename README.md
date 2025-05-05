@@ -68,56 +68,56 @@ Instead of progressing in fixed time intervals, the simulation jumps directly to
    * A vehicle arrival checks for free slots. If available, a parking start event is scheduled; otherwise, the vehicle joins the waiting queue.  
    * A parking end (departure) frees up a slot and, if there are waiting vehicles, triggers the next parking start event.
 ## Simulation Program
-  1. Initialization
-  At the beginning of the simulation:
-  * Set the simulation clock to 0.
-  * Initialize system state variables:
-    * Number of available/occupied slots
-    * Entry queue length
-    * Statistics counters (e.g., total parked vehicles, waiting time sum)
-  * Initialize the event list (FEL) with:
-    * The first vehicle arrival even
-    * The simulation end event
-  2. Main Loop
-    1. Select next event
-      * Remove the earliest (next) event from the Future Event List (FEL).
-      * Advance the simulation clock to the event’s scheduled time.
-    2. Execute event
-      * Arrival event
-        * If a slot is available, assign it and schedule entry and departure events.
-        * If full, add vehicle to the entrance queue.
-        * Schedule the next vehicle arrival.
-      * Entry event
-        * Record entrance time and update slot status to occupied.
-      * Departure event
-        * Mark the slot as free.
-        * If there is a waiting vehicle in the entrance queue, assign that slot and schedule corresponding events.
-      * Simulation end event
-        * Exit the main loop and proceed to reporting.
-    3. Update system state and statistics
-      * Update queue lengths, parking slot occupancy, and time-based statistics (e.g., busy time, average wait).
-  3. Event Routine
-    * Arrival event routine 
-      * Schedule next arrival (using random or defined inter-arrival time).
-      * If space available: assign slot and schedule entry + departure.
-      * If not: enqueue the vehicle
-    * Entry event routine
-      * Update system state to mark vehicle as parked
-      * Start activity timer for parking duration.
-    * Departure event routine 
-      * Free the assigned slot.
-      * If queue is non-empty: assign slot to first vehicle in queue.
-    * Simulation end event routine 
-      * Stop the simulation.
-      * Trigger the report generator.
-  4. Report Generator
-  After simulation ends:
-  * Calculate performance metrics such as:
-    * Average waiting time
-    * Slot utilization rate
-    * Maximum queue length
-    * Throughput (vehicles served)
-  * Output results in a structured format (e.g., table, log, graph).
+1. Initialization
+At the beginning of the simulation:
+* Set the simulation clock to 0.
+* Initialize system state variables:
+  * Number of available/occupied slots
+  * Entry queue length
+  * Statistics counters (e.g., total parked vehicles, waiting time sum)
+* Initialize the event list (FEL) with:
+  * The first vehicle arrival even
+  * The simulation end event
+2. Main Loop
+  1. Select next event
+    * Remove the earliest (next) event from the Future Event List (FEL).
+    * Advance the simulation clock to the event’s scheduled time.
+  2. Execute event
+    * Arrival event
+      * If a slot is available, assign it and schedule entry and departure events.
+      * If full, add vehicle to the entrance queue.
+      * Schedule the next vehicle arrival.
+    * Entry event
+      * Record entrance time and update slot status to occupied.
+    * Departure event
+      * Mark the slot as free.
+      * If there is a waiting vehicle in the entrance queue, assign that slot and schedule corresponding events.
+    * Simulation end event
+      * Exit the main loop and proceed to reporting.
+  3. Update system state and statistics
+    * Update queue lengths, parking slot occupancy, and time-based statistics (e.g., busy time, average wait).
+3. Event Routine
+  * Arrival event routine 
+    * Schedule next arrival (using random or defined inter-arrival time).
+    * If space available: assign slot and schedule entry + departure.
+    * If not: enqueue the vehicle
+  * Entry event routine
+    * Update system state to mark vehicle as parked
+    * Start activity timer for parking duration.
+  * Departure event routine 
+    * Free the assigned slot.
+    * If queue is non-empty: assign slot to first vehicle in queue.
+  * Simulation end event routine 
+    * Stop the simulation.
+    * Trigger the report generator.
+4. Report Generator
+After simulation ends:
+* Calculate performance metrics such as:
+  * Average waiting time
+  * Slot utilization rate
+  * Maximum queue length
+  * Throughput (vehicles served)
+* Output results in a structured format (e.g., table, log, graph).
 ## Verification and Validation
 ### Verification
 1. **Goals:**
