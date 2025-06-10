@@ -1,9 +1,9 @@
-file 35005 1749148220                                           
+file 44437 1749148971                                           
 version 3
-run General-0-20250605-21:29:44-24836
+run General-0-20250605-21:42:10-26280
 attr configname General
-attr datetime 20250605-21:29:44
-attr datetimef 20250605-212944
+attr datetime 20250605-21:42:10
+attr datetimef 20250605-214210
 attr experiment General
 attr inifile omnetpp.ini
 attr iterationvars ""
@@ -11,7 +11,7 @@ attr iterationvarsd ""
 attr iterationvarsf ""
 attr measurement ""
 attr network smartparkingsystem.SmartParkingNetwork
-attr processid 24836
+attr processid 26280
 attr repetition 0
 attr replication #0
 attr resultdir results
@@ -75,63 +75,63 @@ attr title "Slot Occupied"
 vector 14 SmartParkingNetwork.parkingLot vehicleDeparture:vector ETV
 attr recordingmode vector
 attr title "Vehicle Departures"
-vector 15 SmartParkingNetwork.parkingLot.slot[10] slotOccupied:vector ETV
-attr recordingmode vector
-attr title "Slot Occupied"
-vector 16 SmartParkingNetwork.parkingLot.slot[11] slotOccupied:vector ETV
-attr recordingmode vector
-attr title "Slot Occupied"
-vector 17 SmartParkingNetwork.parkingLot.slot[12] slotOccupied:vector ETV
-attr recordingmode vector
-attr title "Slot Occupied"
-vector 18 SmartParkingNetwork.parkingLot.slot[13] slotOccupied:vector ETV
-attr recordingmode vector
-attr title "Slot Occupied"
-vector 19 SmartParkingNetwork.parkingLot.slot[14] slotOccupied:vector ETV
-attr recordingmode vector
-attr title "Slot Occupied"
-vector 20 SmartParkingNetwork.parkingLot.slot[15] slotOccupied:vector ETV
-attr recordingmode vector
-attr title "Slot Occupied"
-vector 21 SmartParkingNetwork.parkingLot.slot[16] slotOccupied:vector ETV
-attr recordingmode vector
-attr title "Slot Occupied"
-vector 22 SmartParkingNetwork.parkingLot.slot[17] slotOccupied:vector ETV
-attr recordingmode vector
-attr title "Slot Occupied"
-vector 23 SmartParkingNetwork.parkingLot.slot[18] slotOccupied:vector ETV
-attr recordingmode vector
-attr title "Slot Occupied"
-vector 24 SmartParkingNetwork.parkingLot.slot[19] slotOccupied:vector ETV
-attr recordingmode vector
-attr title "Slot Occupied"
-vector 25 SmartParkingNetwork.parkingLot waitingTime:vector ETV
+vector 15 SmartParkingNetwork.parkingLot waitingTime:vector ETV
 attr recordingmode vector
 attr title "Waiting Time"
-0	4152 5621 1 356 0 4066.506519829922 210 0 209 21945 3064985
-1	9773 6682 1 356 0 4066.506519829922 252 0 148 17739 1758915
-2	16455 6626 1 356 0 4066.506519829922 252 1 20 4829 95051
-3	23081 6437 1 356 0 4066.506519829922 252 0.05 1 241.45 237.6275
-4	29518 110 2 354 0 4020.93103159416 5 0 1 3 3
-5	29628 74 4 283 25.118615160948 3372.406196895352 3 0 1 2 2
-6	29702 74 6 305 43.583077790364 3556.364682382397 3 0 1 2 2
-7	29776 74 8 293 59.327100590002 3441.462398154933 3 0 1 2 2
-8	29850 177 10 216 70.348070323408 2543.05556469208 7 0 1 4 4
-9	30027 175 12 346 91.111256336685 3967.354418185563 7 0 1 4 4
-10	30202 235 14 290 102.621640274345 3429.03266813939 9 0 1 5 5
-11	30437 183 16 280 147.092128715071 3334.950180893524 7 0 1 4 4
-12	30620 183 18 319 213.390374313637 3629.248774424341 7 0 1 4 4
-13	30803 241 20 235 223.062416412606 2669.922299275865 9 0 1 5 5
-14	31044 1147 21 352 252.184533082618 4020.93103159416 42 0 50 938 29252
-15	32191 237 26 262 269.493821031322 3127.110030912885 9 0 1 5 5
-16	32428 131 28 327 286.282478089327 3742.708518486626 5 0 1 3 3
-17	32559 79 30 312 338.247559806306 3593.312235501196 3 0 1 2 2
-18	32638 131 32 231 339.721266915608 2650.739811228122 5 0 1 3 3
-19	32769 77 34 193 341.544487438094 2221.84700239266 3 0 1 2 2
-20	32846 131 36 220 341.952999206075 2556.102031506612 5 0 1 3 3
-21	32977 25 38 38 377.702752474848 377.702752474848 1 1 1 1 1
-22	33002 129 40 309 407.818437647596 3585.237709051185 5 0 1 3 3
-23	33131 25 42 42 448.624722806434 448.624722806434 1 1 1 1 1
-24	33156 187 44 253 525.529160189271 2999.295643089966 7 0 1 4 4
-25	33343 1661 51 352 680.033974244563 4020.93103159416 41 122.40002291406 2815.3666305842 62583.196761069 120138934.32041
+vector 16 SmartParkingNetwork.parkingLot.slot[10] slotOccupied:vector ETV
+attr recordingmode vector
+attr title "Slot Occupied"
+vector 17 SmartParkingNetwork.parkingLot.slot[11] slotOccupied:vector ETV
+attr recordingmode vector
+attr title "Slot Occupied"
+vector 18 SmartParkingNetwork.parkingLot.slot[12] slotOccupied:vector ETV
+attr recordingmode vector
+attr title "Slot Occupied"
+vector 19 SmartParkingNetwork.parkingLot.slot[13] slotOccupied:vector ETV
+attr recordingmode vector
+attr title "Slot Occupied"
+vector 20 SmartParkingNetwork.parkingLot.slot[14] slotOccupied:vector ETV
+attr recordingmode vector
+attr title "Slot Occupied"
+vector 21 SmartParkingNetwork.parkingLot.slot[15] slotOccupied:vector ETV
+attr recordingmode vector
+attr title "Slot Occupied"
+vector 22 SmartParkingNetwork.parkingLot.slot[16] slotOccupied:vector ETV
+attr recordingmode vector
+attr title "Slot Occupied"
+vector 23 SmartParkingNetwork.parkingLot.slot[17] slotOccupied:vector ETV
+attr recordingmode vector
+attr title "Slot Occupied"
+vector 24 SmartParkingNetwork.parkingLot.slot[18] slotOccupied:vector ETV
+attr recordingmode vector
+attr title "Slot Occupied"
+vector 25 SmartParkingNetwork.parkingLot.slot[19] slotOccupied:vector ETV
+attr recordingmode vector
+attr title "Slot Occupied"
+0	4152 7325 1 459 0 5294.269052619461 271 0 270 36585 6597495
+1	11477 8804 1 461 0 5333.120212173411 328 0 197 31013 4093469
+2	20281 8672 1 461 0 5333.120212173411 328 1 20 6349 125451
+3	28953 8407 1 461 0 5333.120212173411 328 0.05 1 317.45 313.6275
+4	37360 110 2 354 0 4020.93103159416 5 0 1 3 3
+5	37470 74 4 283 25.118615160948 3372.406196895352 3 0 1 2 2
+6	37544 74 6 305 43.583077790364 3556.364682382397 3 0 1 2 2
+7	37618 126 8 452 59.327100590002 5255.897039911178 5 0 1 3 3
+8	37744 227 10 370 70.348070323408 4252.14581498621 9 0 1 5 5
+9	37971 279 12 408 91.111256336685 4734.452873221616 11 0 1 6 6
+10	38250 289 14 462 102.621640274345 5333.120212173411 11 0 1 6 6
+11	38539 235 16 440 147.092128715071 5145.51799019333 9 0 1 5 5
+12	38774 237 18 416 213.390374313637 4788.054577308901 9 0 1 5 5
+13	39011 295 20 389 223.062416412606 4575.823735953521 11 0 1 6 6
+14	39306 1565 22 461 252.184533082618 5333.120212173411 57 0 74 1752 75988
+15	40871 2035 22 461 252.184533082618 5333.120212173411 57 0 3731.2097448499 59690.555316854 131361634.44532
+16	42906 291 26 424 269.493821031322 4812.020838501413 11 0 1 6 6
+17	43197 131 28 327 286.282478089327 3742.708518486626 5 0 1 3 3
+18	43328 133 30 384 338.247559806306 4556.428654251069 5 0 1 3 3
+19	43461 131 32 231 339.721266915608 2650.739811228122 5 0 1 3 3
+20	43592 77 34 193 341.544487438094 2221.84700239266 3 0 1 2 2
+21	43669 131 36 220 341.952999206075 2556.102031506612 5 0 1 3 3
+22	43800 25 38 38 377.702752474848 377.702752474848 1 1 1 1 1
+23	43825 291 40 458 407.818437647596 5294.216943803382 11 0 1 6 6
+24	44116 133 42 421 448.624722806434 4809.031229521099 5 0 1 3 3
+25	44249 187 44 253 525.529160189271 2999.295643089966 7 0 1 4 4
 

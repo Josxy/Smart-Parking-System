@@ -16,10 +16,6 @@ ParkingController::~ParkingController() {
     cancelAndDelete(nextArrivalEvent);
     cancelAndDelete(simulationEndEvent);
 
-    for (auto& pair : departureEvents) {
-        cancelAndDelete(pair.second);
-    }
-
     for (auto& pair : sensorRepairEvents) {
         cancelAndDelete(pair.second);
     }
@@ -34,6 +30,7 @@ void ParkingController::initialize() {
     sensorRepairTime = par("sensorRepairTime");
 
     slotOccupied.resize(numSlots, false);
+    slotSensorWorking.resize(numSlots, true);
 
     queueLengthSignal = registerSignal("queueLength");
     occupiedSlotsSignal = registerSignal("occupiedSlots");
@@ -62,13 +59,16 @@ void ParkingController::handleMessage(cMessage *msg) {
         handleSimulationEnd();
     }
     else if (VehicleDeparture *departure = dynamic_cast<VehicleDeparture*>(msg)) {
-        handleDeparture(departure);
+        handleVehicleDeparture(departure);
     }
     else if (SensorMalfunction *malfunction = dynamic_cast<SensorMalfunction*>(msg)) {
         handleSensorMalfunction(malfunction);
     }
     else if (SensorRepair *repair = dynamic_cast<SensorRepair*>(msg)) {
         handleSensorRepair(repair);
+    }
+    else if (SlotStatusUpdate *update = dynamic_cast<SlotStatusUpdate*>(msg)) {
+        handleSlotStatusUpdate(update);
     }
 
     updateStatistics();
@@ -89,17 +89,6 @@ void ParkingController::handleArrival() {
     int availableSlot = findAvailableSlot();
     if (availableSlot != -1) {
         assignVehicleToSlot(newVehicle, availableSlot);
-
-        newVehicle.entryTime = simTime();
-
-        VehicleDeparture *departure = new VehicleDeparture();
-        departure->setVehicleId(newVehicle.vehicleId);
-        departure->setSlotId(availableSlot);
-        departure->setDepartureTime(simTime() + newVehicle.plannedDuration);
-
-        departureEvents[newVehicle.vehicleId] = departure;
-        scheduleAt(simTime() + newVehicle.plannedDuration, departure);
-
         EV << "Vehicle " << newVehicle.vehicleId << " assigned to slot " << availableSlot << endl;
     } else {
         entryQueue.push(newVehicle);
@@ -110,31 +99,37 @@ void ParkingController::handleArrival() {
     }
 }
 
-void ParkingController::handleDeparture(VehicleDeparture *msg) {
+void ParkingController::handleVehicleDeparture(VehicleDeparture *msg) {
     int vehicleId = msg->getVehicleId();
     int slotId = msg->getSlotId();
 
     totalDepartures++;
     emit(vehicleDepartureSignal, (long)vehicleId);
 
-    EV << "Vehicle " << vehicleId << " departing from slot " << slotId << " at time " << simTime() << endl;
+    EV << "Controller received departure notification: Vehicle " << vehicleId
+       << " departed from slot " << slotId << " at time " << simTime() << endl;
 
+    // Update controller's slot tracking
     slotOccupied[slotId] = false;
 
-    // Send message to slot to update display
-    VehicleDeparture *slotMsg = new VehicleDeparture(*msg);
-    sendToSlot(slotId, slotMsg);
-
+    // Calculate waiting time and parking duration
     if (parkedVehicles.find(vehicleId) != parkedVehicles.end()) {
         Vehicle departingVehicle = parkedVehicles[vehicleId];
         parkedVehicles.erase(vehicleId);
 
+        simtime_t waitingTime = departingVehicle.entryTime - departingVehicle.arrivalTime;
         simtime_t actualDuration = simTime() - departingVehicle.entryTime;
-        EV << "Vehicle " << vehicleId << " parked for " << actualDuration << " seconds" << endl;
+
+        totalWaitingTime += SIMTIME_DBL(waitingTime);
+        emit(waitingTimeSignal, waitingTime);
+
+        EV << "Vehicle " << vehicleId << " waited " << waitingTime
+           << " seconds and parked for " << actualDuration << " seconds" << endl;
     }
 
-    departureEvents.erase(vehicleId);
+    // Process queued vehicles
     processQueuedVehicles();
+
     delete msg;
 }
 
@@ -142,15 +137,17 @@ void ParkingController::handleSensorMalfunction(SensorMalfunction *msg) {
     int sensorId = msg->getSensorId();
     double repairDuration = msg->getRepairDuration();
 
-    EV << "Sensor " << sensorId << " malfunctioned at time " << simTime() << endl;
+    EV << "Controller: Sensor " << sensorId << " malfunctioned at time " << simTime() << endl;
 
     if (sensorId < numSlots) {
+        slotSensorWorking[sensorId] = false;
         malfunctioningSensors.insert(sensorId);
 
-        // Send message to slot
+        // Send malfunction message to slot
         SensorMalfunction *slotMsg = new SensorMalfunction(*msg);
         sendToSlot(sensorId, slotMsg);
 
+        // Schedule repair
         SensorRepair *repair = new SensorRepair();
         repair->setSensorId(sensorId);
 
@@ -164,12 +161,13 @@ void ParkingController::handleSensorMalfunction(SensorMalfunction *msg) {
 void ParkingController::handleSensorRepair(SensorRepair *msg) {
     int sensorId = msg->getSensorId();
 
-    EV << "Sensor " << sensorId << " repaired at time " << simTime() << endl;
+    EV << "Controller: Sensor " << sensorId << " repaired at time " << simTime() << endl;
 
     if (sensorId < numSlots) {
+        slotSensorWorking[sensorId] = true;
         malfunctioningSensors.erase(sensorId);
 
-        // Send message to slot
+        // Send repair message to slot
         SensorRepair *slotMsg = new SensorRepair(*msg);
         sendToSlot(sensorId, slotMsg);
     }
@@ -177,6 +175,28 @@ void ParkingController::handleSensorRepair(SensorRepair *msg) {
     sensorRepairEvents.erase(sensorId);
     processQueuedVehicles();
     scheduleSensorMalfunction();
+
+    delete msg;
+}
+
+void ParkingController::handleSlotStatusUpdate(SlotStatusUpdate *msg) {
+    int slotId = msg->getSlotId();
+    bool occupied = msg->getOccupied();
+    bool sensorWorking = msg->getSensorWorking();
+    int vehicleId = msg->getVehicleId();
+
+    EV << "Controller received status update from slot " << slotId
+       << ": occupied=" << occupied << ", sensor=" << sensorWorking
+       << ", vehicle=" << vehicleId << endl;
+
+    // Update controller's tracking
+    slotOccupied[slotId] = occupied;
+    slotSensorWorking[slotId] = sensorWorking;
+
+    if (!occupied) {
+        // Slot became free, try to assign waiting vehicles
+        processQueuedVehicles();
+    }
 
     delete msg;
 }
@@ -203,15 +223,20 @@ int ParkingController::findAvailableSlot() {
 
 void ParkingController::assignVehicleToSlot(Vehicle &vehicle, int slotId) {
     vehicle.assignedSlot = slotId;
+    vehicle.entryTime = simTime();
     slotOccupied[slotId] = true;
     parkedVehicles[vehicle.vehicleId] = vehicle;
 
-    // Send assignment message to slot
+    // Send assignment message to slot with parking duration
     SlotAssignment *assignment = new SlotAssignment();
     assignment->setVehicleId(vehicle.vehicleId);
     assignment->setSlotId(slotId);
     assignment->setAssignmentTime(simTime());
+    assignment->setParkingDuration(vehicle.plannedDuration);
     sendToSlot(slotId, assignment);
+
+    EV << "Controller assigned vehicle " << vehicle.vehicleId
+       << " to slot " << slotId << " for " << vehicle.plannedDuration << " seconds" << endl;
 }
 
 void ParkingController::processQueuedVehicles() {
@@ -224,25 +249,10 @@ void ParkingController::processQueuedVehicles() {
         Vehicle waitingVehicle = entryQueue.front();
         entryQueue.pop();
 
-        // Calculate waiting time
-        simtime_t waitingTime = simTime() - waitingVehicle.arrivalTime;
-        totalWaitingTime += SIMTIME_DBL(waitingTime);
-        emit(waitingTimeSignal, waitingTime);
-
-        waitingVehicle.entryTime = simTime();
         assignVehicleToSlot(waitingVehicle, availableSlot);
 
-        // Schedule departure
-        VehicleDeparture *departure = new VehicleDeparture();
-        departure->setVehicleId(waitingVehicle.vehicleId);
-        departure->setSlotId(availableSlot);
-        departure->setDepartureTime(simTime() + waitingVehicle.plannedDuration);
-
-        departureEvents[waitingVehicle.vehicleId] = departure;
-        scheduleAt(simTime() + waitingVehicle.plannedDuration, departure);
-
-        EV << "Queued vehicle " << waitingVehicle.vehicleId << " assigned to slot " << availableSlot
-           << " after waiting " << waitingTime << " seconds" << endl;
+        EV << "Assigned queued vehicle " << waitingVehicle.vehicleId
+           << " to slot " << availableSlot << endl;
     }
 }
 
@@ -277,7 +287,7 @@ void ParkingController::scheduleSensorMalfunction() {
     if (uniform(0, 1) < sensorMalfunctionRate) {
         int randomSensor = intuniform(0, numSlots - 1);
         if (malfunctioningSensors.find(randomSensor) == malfunctioningSensors.end()) {
-            double malfunctionTime = exponential(3600); // Average 1 hour between malfunctions
+            double malfunctionTime = exponential(3600);
             double repairDuration = exponential(sensorRepairTime);
 
             SensorMalfunction *malfunction = new SensorMalfunction();
@@ -293,7 +303,7 @@ bool ParkingController::isSlotAvailable(int slotId) {
     if (slotId < 0 || slotId >= numSlots) {
         return false;
     }
-    return !slotOccupied[slotId] && (malfunctioningSensors.find(slotId) == malfunctioningSensors.end());
+    return !slotOccupied[slotId] && slotSensorWorking[slotId];
 }
 
 int ParkingController::getAvailableSlots() {
@@ -320,18 +330,8 @@ void ParkingController::sendToSlot(int slotId, cMessage *msg) {
     if (slotId >= 0 && slotId < gateSize("out")) {
         send(msg, "out", slotId);
     } else {
-        delete msg; // Clean up if invalid slot
+        delete msg;
     }
-}
-
-void ParkingController::notifySlotOccupied(int slotId, int vehicleId) {
-    slotOccupied[slotId] = true;
-    EV << "Controller notified: Slot " << slotId << " occupied by vehicle " << vehicleId << endl;
-}
-
-void ParkingController::notifySlotFree(int slotId) {
-    slotOccupied[slotId] = false;
-    EV << "Controller notified: Slot " << slotId << " is now free" << endl;
 }
 
 void ParkingController::finish() {

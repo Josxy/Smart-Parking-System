@@ -35,10 +35,10 @@ private:
     std::map<int, Vehicle> parkedVehicles;
     std::set<int> malfunctioningSensors;
     std::vector<bool> slotOccupied;
+    std::vector<bool> slotSensorWorking;
 
     cMessage *nextArrivalEvent;
     cMessage *simulationEndEvent;
-    std::map<int, cMessage*> departureEvents;
     std::map<int, cMessage*> sensorRepairEvents;
 
     int vehicleIdCounter;
@@ -65,10 +65,11 @@ protected:
 
 private:
     void handleArrival();
-    void handleDeparture(VehicleDeparture *msg);
+    void handleVehicleDeparture(VehicleDeparture *msg);
     void handleSensorMalfunction(SensorMalfunction *msg);
     void handleSensorRepair(SensorRepair *msg);
     void handleSimulationEnd();
+    void handleSlotStatusUpdate(SlotStatusUpdate *msg);
 
     void scheduleNextArrival();
     int findAvailableSlot();
@@ -83,8 +84,6 @@ private:
     int getOccupiedSlots();
 
     void sendToSlot(int slotId, cMessage *msg);
-    void notifySlotOccupied(int slotId, int vehicleId);
-    void notifySlotFree(int slotId);
 };
 
 #endif

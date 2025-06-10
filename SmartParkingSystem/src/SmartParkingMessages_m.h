@@ -24,6 +24,7 @@ class SensorMalfunction;
 class SensorRepair;
 class SimulationEnd;
 class NextArrival;
+class SlotStatusUpdate;
 /**
  * Class generated from <tt>../src/SmartParkingMessages.msg:1</tt> by opp_msgtool.
  * <pre>
@@ -160,6 +161,7 @@ inline void doParsimUnpacking(omnetpp::cCommBuffer *b, VehicleEntry& obj) {obj.p
  *     int vehicleId;
  *     int slotId;
  *     simtime_t assignmentTime;
+ *     double parkingDuration;
  * }
  * </pre>
  */
@@ -169,6 +171,7 @@ class SlotAssignment : public ::omnetpp::cMessage
     int vehicleId = 0;
     int slotId = 0;
     omnetpp::simtime_t assignmentTime = SIMTIME_ZERO;
+    double parkingDuration = 0;
 
   private:
     void copy(const SlotAssignment& other);
@@ -193,13 +196,16 @@ class SlotAssignment : public ::omnetpp::cMessage
 
     virtual omnetpp::simtime_t getAssignmentTime() const;
     virtual void setAssignmentTime(omnetpp::simtime_t assignmentTime);
+
+    virtual double getParkingDuration() const;
+    virtual void setParkingDuration(double parkingDuration);
 };
 
 inline void doParsimPacking(omnetpp::cCommBuffer *b, const SlotAssignment& obj) {obj.parsimPack(b);}
 inline void doParsimUnpacking(omnetpp::cCommBuffer *b, SlotAssignment& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>../src/SmartParkingMessages.msg:23</tt> by opp_msgtool.
+ * Class generated from <tt>../src/SmartParkingMessages.msg:24</tt> by opp_msgtool.
  * <pre>
  * message SensorMalfunction
  * {
@@ -240,7 +246,7 @@ inline void doParsimPacking(omnetpp::cCommBuffer *b, const SensorMalfunction& ob
 inline void doParsimUnpacking(omnetpp::cCommBuffer *b, SensorMalfunction& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>../src/SmartParkingMessages.msg:28</tt> by opp_msgtool.
+ * Class generated from <tt>../src/SmartParkingMessages.msg:29</tt> by opp_msgtool.
  * <pre>
  * message SensorRepair
  * {
@@ -276,7 +282,7 @@ inline void doParsimPacking(omnetpp::cCommBuffer *b, const SensorRepair& obj) {o
 inline void doParsimUnpacking(omnetpp::cCommBuffer *b, SensorRepair& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>../src/SmartParkingMessages.msg:32</tt> by opp_msgtool.
+ * Class generated from <tt>../src/SmartParkingMessages.msg:33</tt> by opp_msgtool.
  * <pre>
  * message SimulationEnd
  * {
@@ -307,7 +313,7 @@ inline void doParsimPacking(omnetpp::cCommBuffer *b, const SimulationEnd& obj) {
 inline void doParsimUnpacking(omnetpp::cCommBuffer *b, SimulationEnd& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>../src/SmartParkingMessages.msg:35</tt> by opp_msgtool.
+ * Class generated from <tt>../src/SmartParkingMessages.msg:36</tt> by opp_msgtool.
  * <pre>
  * message NextArrival
  * {
@@ -337,6 +343,58 @@ class NextArrival : public ::omnetpp::cMessage
 inline void doParsimPacking(omnetpp::cCommBuffer *b, const NextArrival& obj) {obj.parsimPack(b);}
 inline void doParsimUnpacking(omnetpp::cCommBuffer *b, NextArrival& obj) {obj.parsimUnpack(b);}
 
+/**
+ * Class generated from <tt>../src/SmartParkingMessages.msg:40</tt> by opp_msgtool.
+ * <pre>
+ * // New message for slot status updates
+ * message SlotStatusUpdate
+ * {
+ *     int slotId;
+ *     bool occupied;
+ *     bool sensorWorking;
+ *     int vehicleId;
+ * }
+ * </pre>
+ */
+class SlotStatusUpdate : public ::omnetpp::cMessage
+{
+  protected:
+    int slotId = 0;
+    bool occupied = false;
+    bool sensorWorking = false;
+    int vehicleId = 0;
+
+  private:
+    void copy(const SlotStatusUpdate& other);
+
+  protected:
+    bool operator==(const SlotStatusUpdate&) = delete;
+
+  public:
+    SlotStatusUpdate(const char *name=nullptr, short kind=0);
+    SlotStatusUpdate(const SlotStatusUpdate& other);
+    virtual ~SlotStatusUpdate();
+    SlotStatusUpdate& operator=(const SlotStatusUpdate& other);
+    virtual SlotStatusUpdate *dup() const override {return new SlotStatusUpdate(*this);}
+    virtual void parsimPack(omnetpp::cCommBuffer *b) const override;
+    virtual void parsimUnpack(omnetpp::cCommBuffer *b) override;
+
+    virtual int getSlotId() const;
+    virtual void setSlotId(int slotId);
+
+    virtual bool getOccupied() const;
+    virtual void setOccupied(bool occupied);
+
+    virtual bool getSensorWorking() const;
+    virtual void setSensorWorking(bool sensorWorking);
+
+    virtual int getVehicleId() const;
+    virtual void setVehicleId(int vehicleId);
+};
+
+inline void doParsimPacking(omnetpp::cCommBuffer *b, const SlotStatusUpdate& obj) {obj.parsimPack(b);}
+inline void doParsimUnpacking(omnetpp::cCommBuffer *b, SlotStatusUpdate& obj) {obj.parsimUnpack(b);}
+
 
 namespace omnetpp {
 
@@ -348,6 +406,7 @@ template<> inline SensorMalfunction *fromAnyPtr(any_ptr ptr) { return check_and_
 template<> inline SensorRepair *fromAnyPtr(any_ptr ptr) { return check_and_cast<SensorRepair*>(ptr.get<cObject>()); }
 template<> inline SimulationEnd *fromAnyPtr(any_ptr ptr) { return check_and_cast<SimulationEnd*>(ptr.get<cObject>()); }
 template<> inline NextArrival *fromAnyPtr(any_ptr ptr) { return check_and_cast<NextArrival*>(ptr.get<cObject>()); }
+template<> inline SlotStatusUpdate *fromAnyPtr(any_ptr ptr) { return check_and_cast<SlotStatusUpdate*>(ptr.get<cObject>()); }
 
 }  // namespace omnetpp
 

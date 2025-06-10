@@ -8,9 +8,12 @@ ParkingSlot1::ParkingSlot1() {
     sensorWorking = true;
     occupiedByVehicle = -1;
     occupiedSince = 0;
+    parkingDuration = 0;
+    departureEvent = nullptr;
 }
 
 ParkingSlot1::~ParkingSlot1() {
+    cancelAndDelete(departureEvent);
 }
 
 void ParkingSlot1::initialize() {
@@ -22,47 +25,56 @@ void ParkingSlot1::initialize() {
     slotOccupiedSignal = registerSignal("slotOccupied");
     sensorStatusSignal = registerSignal("sensorStatus");
 
+    departureEvent = new cMessage("departure");
+
     updateDisplay();
+
+    EV << "Parking Slot " << slotId << " initialized" << endl;
 }
 
 void ParkingSlot1::handleMessage(cMessage *msg) {
-    // Handle messages from parking lot
-    if (SlotAssignment *assignment = dynamic_cast<SlotAssignment*>(msg)) {
-        occupySlot(assignment->getVehicleId());
+    if (msg == departureEvent) {
+        // Vehicle is departing from this slot
+        processDeparture();
     }
-    else if (VehicleDeparture *departure = dynamic_cast<VehicleDeparture*>(msg)) {
-        freeSlot();
+    else if (SlotAssignment *assignment = dynamic_cast<SlotAssignment*>(msg)) {
+        // Controller assigned a vehicle to this slot
+        double duration = assignment->getParkingDuration();
+        occupySlot(assignment->getVehicleId(), duration);
+        delete msg;
     }
     else if (SensorMalfunction *malfunction = dynamic_cast<SensorMalfunction*>(msg)) {
         setSensorStatus(false);
+        delete msg;
     }
     else if (SensorRepair *repair = dynamic_cast<SensorRepair*>(msg)) {
         setSensorStatus(true);
+        delete msg;
     }
-
-    delete msg;
+    else {
+        delete msg;
+    }
 }
 
-void ParkingSlot1::occupySlot(int vehicleId) {
+void ParkingSlot1::occupySlot(int vehicleId, double duration) {
+    if (occupied || !sensorWorking) {
+        EV << "Cannot occupy slot " << slotId << " - already occupied or sensor not working" << endl;
+        return;
+    }
+
     occupied = true;
     occupiedByVehicle = vehicleId;
     occupiedSince = simTime();
+    parkingDuration = duration;
 
     emit(slotOccupiedSignal, true);
     updateDisplay();
 
-    EV << "Slot " << slotId << " occupied by vehicle " << vehicleId << endl;
-}
+    // Schedule departure
+    scheduleDeparture();
 
-void ParkingSlot1::freeSlot() {
-    occupied = false;
-    occupiedByVehicle = -1;
-    occupiedSince = 0;
-
-    emit(slotOccupiedSignal, false);
-    updateDisplay();
-
-    EV << "Slot " << slotId << " freed" << endl;
+    EV << "Slot " << slotId << " occupied by vehicle " << vehicleId
+       << " for " << duration << " seconds" << endl;
 }
 
 void ParkingSlot1::setSensorStatus(bool working) {
@@ -71,6 +83,55 @@ void ParkingSlot1::setSensorStatus(bool working) {
     updateDisplay();
 
     EV << "Slot " << slotId << " sensor " << (working ? "repaired" : "malfunctioned") << endl;
+
+    if (!working && occupied) {
+        // If sensor fails while occupied, we can't detect departure
+        EV << "Warning: Sensor failure while slot " << slotId << " is occupied!" << endl;
+    }
+}
+
+void ParkingSlot1::scheduleDeparture() {
+    if (departureEvent->isScheduled()) {
+        cancelEvent(departureEvent);
+    }
+    scheduleAt(simTime() + parkingDuration, departureEvent);
+}
+
+void ParkingSlot1::processDeparture() {
+    if (!occupied) {
+        EV << "Warning: Departure event for empty slot " << slotId << endl;
+        return;
+    }
+
+    EV << "Vehicle " << occupiedByVehicle << " departing from slot " << slotId
+       << " at time " << simTime() << endl;
+
+    // Send departure notification to controller
+    sendDepartureNotification();
+
+    // Clear slot
+    occupied = false;
+    int departingVehicle = occupiedByVehicle;
+    occupiedByVehicle = -1;
+    occupiedSince = 0;
+    parkingDuration = 0;
+
+    emit(slotOccupiedSignal, false);
+    updateDisplay();
+
+    EV << "Slot " << slotId << " is now free" << endl;
+}
+
+void ParkingSlot1::sendDepartureNotification() {
+    VehicleDeparture *departure = new VehicleDeparture();
+    departure->setVehicleId(occupiedByVehicle);
+    departure->setSlotId(slotId);
+    departure->setDepartureTime(simTime());
+
+    send(departure, "out");
+
+    EV << "Slot " << slotId << " sent departure notification for vehicle "
+       << occupiedByVehicle << " to controller" << endl;
 }
 
 void ParkingSlot1::updateDisplay() {

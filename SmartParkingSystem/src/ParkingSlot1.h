@@ -13,6 +13,10 @@ private:
     bool sensorWorking;
     int occupiedByVehicle;
     simtime_t occupiedSince;
+    double parkingDuration;
+
+    // Self-scheduled departure event
+    cMessage *departureEvent;
 
     simsignal_t slotOccupiedSignal;
     simsignal_t sensorStatusSignal;
@@ -27,8 +31,7 @@ public:
     int getSlotId() const { return slotId; }
     int getOccupiedByVehicle() const { return occupiedByVehicle; }
 
-    void occupySlot(int vehicleId);
-    void freeSlot();
+    void occupySlot(int vehicleId, double duration);
     void setSensorStatus(bool working);
 
 protected:
@@ -37,6 +40,9 @@ protected:
 
 private:
     void updateDisplay();
+    void scheduleDeparture();
+    void processDeparture();
+    void sendDepartureNotification();
 };
 
 #endif

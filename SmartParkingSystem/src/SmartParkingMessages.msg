@@ -18,6 +18,7 @@ message SlotAssignment {
     int vehicleId;
     int slotId;
     simtime_t assignmentTime;
+    double parkingDuration;
 }
 
 message SensorMalfunction {
@@ -33,4 +34,12 @@ message SimulationEnd {
 }
 
 message NextArrival {
+}
+
+// New message for slot status updates
+message SlotStatusUpdate {
+    int slotId;
+    bool occupied;
+    bool sensorWorking;
+    int vehicleId;
 }

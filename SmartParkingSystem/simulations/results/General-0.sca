@@ -1,0 +1,227 @@
+version 3
+run General-0-20250605-21:42:10-26280
+attr configname General
+attr datetime 20250605-21:42:10
+attr datetimef 20250605-214210
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network smartparkingsystem.SmartParkingNetwork
+attr processid 26280
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config network smartparkingsystem.SmartParkingNetwork
+config sim-time-limit 7200s
+config seed-set 0
+config **.parkingLot.numSlots 20
+config **.parkingLot.arrivalRate 0.05
+config **.parkingLot.avgParkingDuration 1800.0
+config **.parkingLot.simulationTime 7200.0
+config **.parkingLot.sensorMalfunctionRate 0.001
+config **.parkingLot.sensorRepairTime 300.0
+config output-vector-file results/General-0.vec
+config output-scalar-file results/General-0.sca
+config repeat 10
+
+par SmartParkingNetwork.parkingLot.controller typename "\"smartparkingsystem.ParkingController\""
+par SmartParkingNetwork.parkingLot.controller numSlots 20
+par SmartParkingNetwork.parkingLot.controller arrivalRate 0.05
+par SmartParkingNetwork.parkingLot.controller avgParkingDuration 1800
+par SmartParkingNetwork.parkingLot.controller simulationTime 7200
+par SmartParkingNetwork.parkingLot.controller sensorMalfunctionRate 0.001
+par SmartParkingNetwork.parkingLot.controller sensorRepairTime 300
+par SmartParkingNetwork.parkingLot.slot[0] typename "\"smartparkingsystem.ParkingSlot1\""
+par SmartParkingNetwork.parkingLot.slot[0] slotId 0
+par SmartParkingNetwork.parkingLot.slot[0] occupied false
+par SmartParkingNetwork.parkingLot.slot[0] sensorWorking true
+par SmartParkingNetwork.parkingLot.slot[0] occupiedByVehicle -1
+par SmartParkingNetwork.parkingLot.slot[1] typename "\"smartparkingsystem.ParkingSlot1\""
+par SmartParkingNetwork.parkingLot.slot[1] slotId 1
+par SmartParkingNetwork.parkingLot.slot[1] occupied false
+par SmartParkingNetwork.parkingLot.slot[1] sensorWorking true
+par SmartParkingNetwork.parkingLot.slot[1] occupiedByVehicle -1
+par SmartParkingNetwork.parkingLot.slot[2] typename "\"smartparkingsystem.ParkingSlot1\""
+par SmartParkingNetwork.parkingLot.slot[2] slotId 2
+par SmartParkingNetwork.parkingLot.slot[2] occupied false
+par SmartParkingNetwork.parkingLot.slot[2] sensorWorking true
+par SmartParkingNetwork.parkingLot.slot[2] occupiedByVehicle -1
+par SmartParkingNetwork.parkingLot.slot[3] typename "\"smartparkingsystem.ParkingSlot1\""
+par SmartParkingNetwork.parkingLot.slot[3] slotId 3
+par SmartParkingNetwork.parkingLot.slot[3] occupied false
+par SmartParkingNetwork.parkingLot.slot[3] sensorWorking true
+par SmartParkingNetwork.parkingLot.slot[3] occupiedByVehicle -1
+par SmartParkingNetwork.parkingLot.slot[4] typename "\"smartparkingsystem.ParkingSlot1\""
+par SmartParkingNetwork.parkingLot.slot[4] slotId 4
+par SmartParkingNetwork.parkingLot.slot[4] occupied false
+par SmartParkingNetwork.parkingLot.slot[4] sensorWorking true
+par SmartParkingNetwork.parkingLot.slot[4] occupiedByVehicle -1
+par SmartParkingNetwork.parkingLot.slot[5] typename "\"smartparkingsystem.ParkingSlot1\""
+par SmartParkingNetwork.parkingLot.slot[5] slotId 5
+par SmartParkingNetwork.parkingLot.slot[5] occupied false
+par SmartParkingNetwork.parkingLot.slot[5] sensorWorking true
+par SmartParkingNetwork.parkingLot.slot[5] occupiedByVehicle -1
+par SmartParkingNetwork.parkingLot.slot[6] typename "\"smartparkingsystem.ParkingSlot1\""
+par SmartParkingNetwork.parkingLot.slot[6] slotId 6
+par SmartParkingNetwork.parkingLot.slot[6] occupied false
+par SmartParkingNetwork.parkingLot.slot[6] sensorWorking true
+par SmartParkingNetwork.parkingLot.slot[6] occupiedByVehicle -1
+par SmartParkingNetwork.parkingLot.slot[7] typename "\"smartparkingsystem.ParkingSlot1\""
+par SmartParkingNetwork.parkingLot.slot[7] slotId 7
+par SmartParkingNetwork.parkingLot.slot[7] occupied false
+par SmartParkingNetwork.parkingLot.slot[7] sensorWorking true
+par SmartParkingNetwork.parkingLot.slot[7] occupiedByVehicle -1
+par SmartParkingNetwork.parkingLot.slot[8] typename "\"smartparkingsystem.ParkingSlot1\""
+par SmartParkingNetwork.parkingLot.slot[8] slotId 8
+par SmartParkingNetwork.parkingLot.slot[8] occupied false
+par SmartParkingNetwork.parkingLot.slot[8] sensorWorking true
+par SmartParkingNetwork.parkingLot.slot[8] occupiedByVehicle -1
+par SmartParkingNetwork.parkingLot.slot[9] typename "\"smartparkingsystem.ParkingSlot1\""
+par SmartParkingNetwork.parkingLot.slot[9] slotId 9
+par SmartParkingNetwork.parkingLot.slot[9] occupied false
+par SmartParkingNetwork.parkingLot.slot[9] sensorWorking true
+par SmartParkingNetwork.parkingLot.slot[9] occupiedByVehicle -1
+par SmartParkingNetwork.parkingLot.slot[10] typename "\"smartparkingsystem.ParkingSlot1\""
+par SmartParkingNetwork.parkingLot.slot[10] slotId 10
+par SmartParkingNetwork.parkingLot.slot[10] occupied false
+par SmartParkingNetwork.parkingLot.slot[10] sensorWorking true
+par SmartParkingNetwork.parkingLot.slot[10] occupiedByVehicle -1
+par SmartParkingNetwork.parkingLot.slot[11] typename "\"smartparkingsystem.ParkingSlot1\""
+par SmartParkingNetwork.parkingLot.slot[11] slotId 11
+par SmartParkingNetwork.parkingLot.slot[11] occupied false
+par SmartParkingNetwork.parkingLot.slot[11] sensorWorking true
+par SmartParkingNetwork.parkingLot.slot[11] occupiedByVehicle -1
+par SmartParkingNetwork.parkingLot.slot[12] typename "\"smartparkingsystem.ParkingSlot1\""
+par SmartParkingNetwork.parkingLot.slot[12] slotId 12
+par SmartParkingNetwork.parkingLot.slot[12] occupied false
+par SmartParkingNetwork.parkingLot.slot[12] sensorWorking true
+par SmartParkingNetwork.parkingLot.slot[12] occupiedByVehicle -1
+par SmartParkingNetwork.parkingLot.slot[13] typename "\"smartparkingsystem.ParkingSlot1\""
+par SmartParkingNetwork.parkingLot.slot[13] slotId 13
+par SmartParkingNetwork.parkingLot.slot[13] occupied false
+par SmartParkingNetwork.parkingLot.slot[13] sensorWorking true
+par SmartParkingNetwork.parkingLot.slot[13] occupiedByVehicle -1
+par SmartParkingNetwork.parkingLot.slot[14] typename "\"smartparkingsystem.ParkingSlot1\""
+par SmartParkingNetwork.parkingLot.slot[14] slotId 14
+par SmartParkingNetwork.parkingLot.slot[14] occupied false
+par SmartParkingNetwork.parkingLot.slot[14] sensorWorking true
+par SmartParkingNetwork.parkingLot.slot[14] occupiedByVehicle -1
+par SmartParkingNetwork.parkingLot.slot[15] typename "\"smartparkingsystem.ParkingSlot1\""
+par SmartParkingNetwork.parkingLot.slot[15] slotId 15
+par SmartParkingNetwork.parkingLot.slot[15] occupied false
+par SmartParkingNetwork.parkingLot.slot[15] sensorWorking true
+par SmartParkingNetwork.parkingLot.slot[15] occupiedByVehicle -1
+par SmartParkingNetwork.parkingLot.slot[16] typename "\"smartparkingsystem.ParkingSlot1\""
+par SmartParkingNetwork.parkingLot.slot[16] slotId 16
+par SmartParkingNetwork.parkingLot.slot[16] occupied false
+par SmartParkingNetwork.parkingLot.slot[16] sensorWorking true
+par SmartParkingNetwork.parkingLot.slot[16] occupiedByVehicle -1
+par SmartParkingNetwork.parkingLot.slot[17] typename "\"smartparkingsystem.ParkingSlot1\""
+par SmartParkingNetwork.parkingLot.slot[17] slotId 17
+par SmartParkingNetwork.parkingLot.slot[17] occupied false
+par SmartParkingNetwork.parkingLot.slot[17] sensorWorking true
+par SmartParkingNetwork.parkingLot.slot[17] occupiedByVehicle -1
+par SmartParkingNetwork.parkingLot.slot[18] typename "\"smartparkingsystem.ParkingSlot1\""
+par SmartParkingNetwork.parkingLot.slot[18] slotId 18
+par SmartParkingNetwork.parkingLot.slot[18] occupied false
+par SmartParkingNetwork.parkingLot.slot[18] sensorWorking true
+par SmartParkingNetwork.parkingLot.slot[18] occupiedByVehicle -1
+par SmartParkingNetwork.parkingLot.slot[19] typename "\"smartparkingsystem.ParkingSlot1\""
+par SmartParkingNetwork.parkingLot.slot[19] slotId 19
+par SmartParkingNetwork.parkingLot.slot[19] occupied false
+par SmartParkingNetwork.parkingLot.slot[19] sensorWorking true
+par SmartParkingNetwork.parkingLot.slot[19] occupiedByVehicle -1
+par SmartParkingNetwork.parkingLot typename "\"smartparkingsystem.ParkingLot\""
+par SmartParkingNetwork.parkingLot numSlots 20
+par SmartParkingNetwork.parkingLot arrivalRate 0.05
+par SmartParkingNetwork.parkingLot avgParkingDuration 1800
+par SmartParkingNetwork.parkingLot simulationTime 7200
+par SmartParkingNetwork.parkingLot sensorMalfunctionRate 0.001
+par SmartParkingNetwork.parkingLot sensorRepairTime 300
+scalar SmartParkingNetwork.parkingLot vehicleDeparture:count 57
+attr recordingmode count
+attr title "Vehicle Departures, count"
+scalar SmartParkingNetwork.parkingLot vehicleArrival:count 271
+attr recordingmode count
+attr title "Vehicle Arrivals, count"
+scalar SmartParkingNetwork.parkingLot utilizationRate:mean 0.96783536585366
+attr recordingmode mean
+attr title "Utilization Rate, mean"
+scalar SmartParkingNetwork.parkingLot waitingTime:mean 1047.2027248571
+attr recordingmode mean
+attr title "Waiting Time, mean"
+statistic SmartParkingNetwork.parkingLot waitingTime:histogram
+field count 57
+field mean 1047.2027248571
+field stddev 1108.8404679574
+field min 0
+field max 3731.2097448499
+field sum 59690.555316854
+field sqrsum 131361634.44532
+attr recordingmode histogram
+attr title "Waiting Time"
+bin	-inf	0
+bin	0	20
+bin	100	3
+bin	200	0
+bin	300	1
+bin	400	2
+bin	500	1
+bin	600	1
+bin	700	1
+bin	800	2
+bin	900	1
+bin	1000	1
+bin	1100	1
+bin	1200	3
+bin	1300	0
+bin	1400	1
+bin	1500	0
+bin	1600	3
+bin	1700	1
+bin	1800	1
+bin	1900	0
+bin	2000	0
+bin	2100	1
+bin	2200	5
+bin	2300	0
+bin	2400	3
+bin	2500	0
+bin	2600	0
+bin	2700	1
+bin	2800	1
+bin	2900	0
+bin	3000	0
+bin	3100	0
+bin	3200	0
+bin	3300	0
+bin	3400	1
+bin	3500	0
+bin	3600	1
+bin	3700	1
+bin	3800	0
+bin	3900	0
+bin	4000	0
+bin	4100	0
+bin	4200	0
+bin	4300	0
+bin	4400	0
+bin	4500	0
+bin	4600	0
+bin	4700	0
+scalar SmartParkingNetwork.parkingLot occupiedSlots:mean 19.356707317073
+attr recordingmode mean
+attr title "Occupied Slots, mean"
+scalar SmartParkingNetwork.parkingLot queueLength:mean 94.551829268293
+attr recordingmode mean
+attr title "Queue Length, mean"
+scalar SmartParkingNetwork.parkingLot queueLength:max 197
+attr recordingmode max
+attr title "Queue Length, max"
+par SmartParkingNetwork typename "\"smartparkingsystem.SmartParkingNetwork\""
+
