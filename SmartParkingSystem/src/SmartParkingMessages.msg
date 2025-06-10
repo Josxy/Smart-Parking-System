@@ -36,10 +36,26 @@ message SimulationEnd {
 message NextArrival {
 }
 
-// New message for slot status updates
 message SlotStatusUpdate {
     int slotId;
     bool occupied;
     bool sensorWorking;
     int vehicleId;
+}
+
+message VehicleDequeue {
+    // Request to remove vehicle from queue
+}
+
+message VehicleFromQueue {
+    int vehicleId;
+    simtime_t arrivalTime;
+    simtime_t queueEntryTime;
+    double plannedDuration;
+}
+
+message AssignmentInProgress {
+    int vehicleId;
+    int slotId;
+    simtime_t assignmentTime;
 }

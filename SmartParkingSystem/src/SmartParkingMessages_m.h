@@ -25,6 +25,9 @@ class SensorRepair;
 class SimulationEnd;
 class NextArrival;
 class SlotStatusUpdate;
+class VehicleDequeue;
+class VehicleFromQueue;
+class AssignmentInProgress;
 /**
  * Class generated from <tt>../src/SmartParkingMessages.msg:1</tt> by opp_msgtool.
  * <pre>
@@ -344,9 +347,8 @@ inline void doParsimPacking(omnetpp::cCommBuffer *b, const NextArrival& obj) {ob
 inline void doParsimUnpacking(omnetpp::cCommBuffer *b, NextArrival& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>../src/SmartParkingMessages.msg:40</tt> by opp_msgtool.
+ * Class generated from <tt>../src/SmartParkingMessages.msg:39</tt> by opp_msgtool.
  * <pre>
- * // New message for slot status updates
  * message SlotStatusUpdate
  * {
  *     int slotId;
@@ -395,6 +397,134 @@ class SlotStatusUpdate : public ::omnetpp::cMessage
 inline void doParsimPacking(omnetpp::cCommBuffer *b, const SlotStatusUpdate& obj) {obj.parsimPack(b);}
 inline void doParsimUnpacking(omnetpp::cCommBuffer *b, SlotStatusUpdate& obj) {obj.parsimUnpack(b);}
 
+/**
+ * Class generated from <tt>../src/SmartParkingMessages.msg:46</tt> by opp_msgtool.
+ * <pre>
+ * message VehicleDequeue
+ * {
+ * }
+ * </pre>
+ */
+class VehicleDequeue : public ::omnetpp::cMessage
+{
+  protected:
+
+  private:
+    void copy(const VehicleDequeue& other);
+
+  protected:
+    bool operator==(const VehicleDequeue&) = delete;
+
+  public:
+    VehicleDequeue(const char *name=nullptr, short kind=0);
+    VehicleDequeue(const VehicleDequeue& other);
+    virtual ~VehicleDequeue();
+    VehicleDequeue& operator=(const VehicleDequeue& other);
+    virtual VehicleDequeue *dup() const override {return new VehicleDequeue(*this);}
+    virtual void parsimPack(omnetpp::cCommBuffer *b) const override;
+    virtual void parsimUnpack(omnetpp::cCommBuffer *b) override;
+};
+
+inline void doParsimPacking(omnetpp::cCommBuffer *b, const VehicleDequeue& obj) {obj.parsimPack(b);}
+inline void doParsimUnpacking(omnetpp::cCommBuffer *b, VehicleDequeue& obj) {obj.parsimUnpack(b);}
+
+/**
+ * Class generated from <tt>../src/SmartParkingMessages.msg:50</tt> by opp_msgtool.
+ * <pre>
+ * message VehicleFromQueue
+ * {
+ *     int vehicleId;
+ *     simtime_t arrivalTime;
+ *     simtime_t queueEntryTime;
+ *     double plannedDuration;
+ * }
+ * </pre>
+ */
+class VehicleFromQueue : public ::omnetpp::cMessage
+{
+  protected:
+    int vehicleId = 0;
+    omnetpp::simtime_t arrivalTime = SIMTIME_ZERO;
+    omnetpp::simtime_t queueEntryTime = SIMTIME_ZERO;
+    double plannedDuration = 0;
+
+  private:
+    void copy(const VehicleFromQueue& other);
+
+  protected:
+    bool operator==(const VehicleFromQueue&) = delete;
+
+  public:
+    VehicleFromQueue(const char *name=nullptr, short kind=0);
+    VehicleFromQueue(const VehicleFromQueue& other);
+    virtual ~VehicleFromQueue();
+    VehicleFromQueue& operator=(const VehicleFromQueue& other);
+    virtual VehicleFromQueue *dup() const override {return new VehicleFromQueue(*this);}
+    virtual void parsimPack(omnetpp::cCommBuffer *b) const override;
+    virtual void parsimUnpack(omnetpp::cCommBuffer *b) override;
+
+    virtual int getVehicleId() const;
+    virtual void setVehicleId(int vehicleId);
+
+    virtual omnetpp::simtime_t getArrivalTime() const;
+    virtual void setArrivalTime(omnetpp::simtime_t arrivalTime);
+
+    virtual omnetpp::simtime_t getQueueEntryTime() const;
+    virtual void setQueueEntryTime(omnetpp::simtime_t queueEntryTime);
+
+    virtual double getPlannedDuration() const;
+    virtual void setPlannedDuration(double plannedDuration);
+};
+
+inline void doParsimPacking(omnetpp::cCommBuffer *b, const VehicleFromQueue& obj) {obj.parsimPack(b);}
+inline void doParsimUnpacking(omnetpp::cCommBuffer *b, VehicleFromQueue& obj) {obj.parsimUnpack(b);}
+
+/**
+ * Class generated from <tt>../src/SmartParkingMessages.msg:57</tt> by opp_msgtool.
+ * <pre>
+ * message AssignmentInProgress
+ * {
+ *     int vehicleId;
+ *     int slotId;
+ *     simtime_t assignmentTime;
+ * }
+ * </pre>
+ */
+class AssignmentInProgress : public ::omnetpp::cMessage
+{
+  protected:
+    int vehicleId = 0;
+    int slotId = 0;
+    omnetpp::simtime_t assignmentTime = SIMTIME_ZERO;
+
+  private:
+    void copy(const AssignmentInProgress& other);
+
+  protected:
+    bool operator==(const AssignmentInProgress&) = delete;
+
+  public:
+    AssignmentInProgress(const char *name=nullptr, short kind=0);
+    AssignmentInProgress(const AssignmentInProgress& other);
+    virtual ~AssignmentInProgress();
+    AssignmentInProgress& operator=(const AssignmentInProgress& other);
+    virtual AssignmentInProgress *dup() const override {return new AssignmentInProgress(*this);}
+    virtual void parsimPack(omnetpp::cCommBuffer *b) const override;
+    virtual void parsimUnpack(omnetpp::cCommBuffer *b) override;
+
+    virtual int getVehicleId() const;
+    virtual void setVehicleId(int vehicleId);
+
+    virtual int getSlotId() const;
+    virtual void setSlotId(int slotId);
+
+    virtual omnetpp::simtime_t getAssignmentTime() const;
+    virtual void setAssignmentTime(omnetpp::simtime_t assignmentTime);
+};
+
+inline void doParsimPacking(omnetpp::cCommBuffer *b, const AssignmentInProgress& obj) {obj.parsimPack(b);}
+inline void doParsimUnpacking(omnetpp::cCommBuffer *b, AssignmentInProgress& obj) {obj.parsimUnpack(b);}
+
 
 namespace omnetpp {
 
@@ -407,6 +537,9 @@ template<> inline SensorRepair *fromAnyPtr(any_ptr ptr) { return check_and_cast<
 template<> inline SimulationEnd *fromAnyPtr(any_ptr ptr) { return check_and_cast<SimulationEnd*>(ptr.get<cObject>()); }
 template<> inline NextArrival *fromAnyPtr(any_ptr ptr) { return check_and_cast<NextArrival*>(ptr.get<cObject>()); }
 template<> inline SlotStatusUpdate *fromAnyPtr(any_ptr ptr) { return check_and_cast<SlotStatusUpdate*>(ptr.get<cObject>()); }
+template<> inline VehicleDequeue *fromAnyPtr(any_ptr ptr) { return check_and_cast<VehicleDequeue*>(ptr.get<cObject>()); }
+template<> inline VehicleFromQueue *fromAnyPtr(any_ptr ptr) { return check_and_cast<VehicleFromQueue*>(ptr.get<cObject>()); }
+template<> inline AssignmentInProgress *fromAnyPtr(any_ptr ptr) { return check_and_cast<AssignmentInProgress*>(ptr.get<cObject>()); }
 
 }  // namespace omnetpp
 

@@ -2,6 +2,7 @@ package smartparkingsystem;
 
 import smartparkingsystem.ParkingSlot1;
 import smartparkingsystem.ParkingController;
+import smartparkingsystem.ParkingQueue;
 
 module ParkingLot
 {
@@ -13,7 +14,7 @@ module ParkingLot
         double sensorMalfunctionRate = default(0.001);
         double sensorRepairTime = default(300.0);
         
-        @display("bgb=1000,700;bgi=background/terrain");
+        @display("bgb=1200,800;bgi=background/terrain");
         
         @signal[queueLength](type=long);
         @signal[occupiedSlots](type=long);
@@ -30,6 +31,11 @@ module ParkingLot
         @statistic[vehicleDeparture](title="Vehicle Departures"; record=count,vector);
         
     submodules:
+        queue: ParkingQueue {
+            maxQueueSize = 50;
+            @display("p=50,400;i=block/queue;is=l");
+        }
+        
         controller: ParkingController {
             numSlots = parent.numSlots;
             arrivalRate = parent.arrivalRate;
@@ -37,17 +43,22 @@ module ParkingLot
             simulationTime = parent.simulationTime;
             sensorMalfunctionRate = parent.sensorMalfunctionRate;
             sensorRepairTime = parent.sensorRepairTime;
-            @display("p=100,50;i=block/control;is=l");
+            @display("p=250,400;i=block/control;is=l");
         }
         
         slot[numSlots]: ParkingSlot1 {
             slotId = index;
-            @display("p=${200 + (index % 8) * 100},${150 + int(index / 8) * 80};is=l");
+            @display("p=${400 + (index % 8) * 100},${150 + int(index / 8) * 80};is=l");
         }
         
     connections:
+        // Queue to Controller connection
+        queue.out --> controller.queueIn;
+        controller.queueOut --> queue.in;
+        
+        // Controller to Slots connections
         for i=0..numSlots-1 {
-            controller.out++ --> slot[i].in;
-            slot[i].out --> controller.in++;
+            controller.slotOut++ --> slot[i].in;
+            slot[i].out --> controller.slotIn++;
         }
 }

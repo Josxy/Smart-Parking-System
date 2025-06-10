@@ -13,12 +13,13 @@ using namespace omnetpp;
 struct Vehicle {
     int vehicleId;
     simtime_t arrivalTime;
+    simtime_t queueEntryTime;
     simtime_t entryTime;
     simtime_t departureTime;
     int assignedSlot;
     double plannedDuration;
 
-    Vehicle() : vehicleId(-1), arrivalTime(0), entryTime(0),
+    Vehicle() : vehicleId(-1), arrivalTime(0), queueEntryTime(0), entryTime(0),
                 departureTime(0), assignedSlot(-1), plannedDuration(0) {}
 };
 
@@ -31,7 +32,6 @@ private:
     double sensorMalfunctionRate;
     double sensorRepairTime;
 
-    std::queue<Vehicle> entryQueue;
     std::map<int, Vehicle> parkedVehicles;
     std::set<int> malfunctioningSensors;
     std::vector<bool> slotOccupied;
@@ -39,7 +39,13 @@ private:
 
     cMessage *nextArrivalEvent;
     cMessage *simulationEndEvent;
+    cMessage *assignmentAnimationEvent;
     std::map<int, cMessage*> sensorRepairEvents;
+
+    // Assignment animation
+    int currentAssignmentVehicle;
+    int currentAssignmentSlot;
+    bool assignmentInProgress;
 
     int vehicleIdCounter;
     int totalArrivals;
@@ -66,17 +72,20 @@ protected:
 private:
     void handleArrival();
     void handleVehicleDeparture(VehicleDeparture *msg);
+    void handleVehicleFromQueue(VehicleFromQueue *msg);
     void handleSensorMalfunction(SensorMalfunction *msg);
     void handleSensorRepair(SensorRepair *msg);
     void handleSimulationEnd();
-    void handleSlotStatusUpdate(SlotStatusUpdate *msg);
+    void handleAssignmentAnimation();
 
     void scheduleNextArrival();
+    void requestVehicleFromQueue();
     int findAvailableSlot();
     void assignVehicleToSlot(Vehicle &vehicle, int slotId);
-    void processQueuedVehicles();
+    void startAssignmentAnimation(int vehicleId, int slotId);
     void updateStatistics();
     void generateReport();
+    void updateDisplay();
 
     void scheduleSensorMalfunction();
     bool isSlotAvailable(int slotId);
@@ -84,6 +93,7 @@ private:
     int getOccupiedSlots();
 
     void sendToSlot(int slotId, cMessage *msg);
+    void sendToQueue(cMessage *msg);
 };
 
 #endif

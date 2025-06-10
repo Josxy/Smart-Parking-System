@@ -3498,6 +3498,1141 @@ void SlotStatusUpdateDescriptor::setFieldStructValuePointer(omnetpp::any_ptr obj
     }
 }
 
+Register_Class(VehicleDequeue)
+
+VehicleDequeue::VehicleDequeue(const char *name, short kind) : ::omnetpp::cMessage(name, kind)
+{
+}
+
+VehicleDequeue::VehicleDequeue(const VehicleDequeue& other) : ::omnetpp::cMessage(other)
+{
+    copy(other);
+}
+
+VehicleDequeue::~VehicleDequeue()
+{
+}
+
+VehicleDequeue& VehicleDequeue::operator=(const VehicleDequeue& other)
+{
+    if (this == &other) return *this;
+    ::omnetpp::cMessage::operator=(other);
+    copy(other);
+    return *this;
+}
+
+void VehicleDequeue::copy(const VehicleDequeue& other)
+{
+}
+
+void VehicleDequeue::parsimPack(omnetpp::cCommBuffer *b) const
+{
+    ::omnetpp::cMessage::parsimPack(b);
+}
+
+void VehicleDequeue::parsimUnpack(omnetpp::cCommBuffer *b)
+{
+    ::omnetpp::cMessage::parsimUnpack(b);
+}
+
+class VehicleDequeueDescriptor : public omnetpp::cClassDescriptor
+{
+  private:
+    mutable const char **propertyNames;
+    enum FieldConstants {
+    };
+  public:
+    VehicleDequeueDescriptor();
+    virtual ~VehicleDequeueDescriptor();
+
+    virtual bool doesSupport(omnetpp::cObject *obj) const override;
+    virtual const char **getPropertyNames() const override;
+    virtual const char *getProperty(const char *propertyName) const override;
+    virtual int getFieldCount() const override;
+    virtual const char *getFieldName(int field) const override;
+    virtual int findField(const char *fieldName) const override;
+    virtual unsigned int getFieldTypeFlags(int field) const override;
+    virtual const char *getFieldTypeString(int field) const override;
+    virtual const char **getFieldPropertyNames(int field) const override;
+    virtual const char *getFieldProperty(int field, const char *propertyName) const override;
+    virtual int getFieldArraySize(omnetpp::any_ptr object, int field) const override;
+    virtual void setFieldArraySize(omnetpp::any_ptr object, int field, int size) const override;
+
+    virtual const char *getFieldDynamicTypeString(omnetpp::any_ptr object, int field, int i) const override;
+    virtual std::string getFieldValueAsString(omnetpp::any_ptr object, int field, int i) const override;
+    virtual void setFieldValueAsString(omnetpp::any_ptr object, int field, int i, const char *value) const override;
+    virtual omnetpp::cValue getFieldValue(omnetpp::any_ptr object, int field, int i) const override;
+    virtual void setFieldValue(omnetpp::any_ptr object, int field, int i, const omnetpp::cValue& value) const override;
+
+    virtual const char *getFieldStructName(int field) const override;
+    virtual omnetpp::any_ptr getFieldStructValuePointer(omnetpp::any_ptr object, int field, int i) const override;
+    virtual void setFieldStructValuePointer(omnetpp::any_ptr object, int field, int i, omnetpp::any_ptr ptr) const override;
+};
+
+Register_ClassDescriptor(VehicleDequeueDescriptor)
+
+VehicleDequeueDescriptor::VehicleDequeueDescriptor() : omnetpp::cClassDescriptor(omnetpp::opp_typename(typeid(VehicleDequeue)), "omnetpp::cMessage")
+{
+    propertyNames = nullptr;
+}
+
+VehicleDequeueDescriptor::~VehicleDequeueDescriptor()
+{
+    delete[] propertyNames;
+}
+
+bool VehicleDequeueDescriptor::doesSupport(omnetpp::cObject *obj) const
+{
+    return dynamic_cast<VehicleDequeue *>(obj)!=nullptr;
+}
+
+const char **VehicleDequeueDescriptor::getPropertyNames() const
+{
+    if (!propertyNames) {
+        static const char *names[] = {  nullptr };
+        omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+        const char **baseNames = base ? base->getPropertyNames() : nullptr;
+        propertyNames = mergeLists(baseNames, names);
+    }
+    return propertyNames;
+}
+
+const char *VehicleDequeueDescriptor::getProperty(const char *propertyName) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    return base ? base->getProperty(propertyName) : nullptr;
+}
+
+int VehicleDequeueDescriptor::getFieldCount() const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    return base ? 0+base->getFieldCount() : 0;
+}
+
+unsigned int VehicleDequeueDescriptor::getFieldTypeFlags(int field) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldTypeFlags(field);
+        field -= base->getFieldCount();
+    }
+    return 0;
+}
+
+const char *VehicleDequeueDescriptor::getFieldName(int field) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldName(field);
+        field -= base->getFieldCount();
+    }
+    return nullptr;
+}
+
+int VehicleDequeueDescriptor::findField(const char *fieldName) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    return base ? base->findField(fieldName) : -1;
+}
+
+const char *VehicleDequeueDescriptor::getFieldTypeString(int field) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldTypeString(field);
+        field -= base->getFieldCount();
+    }
+    return nullptr;
+}
+
+const char **VehicleDequeueDescriptor::getFieldPropertyNames(int field) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldPropertyNames(field);
+        field -= base->getFieldCount();
+    }
+    switch (field) {
+        default: return nullptr;
+    }
+}
+
+const char *VehicleDequeueDescriptor::getFieldProperty(int field, const char *propertyName) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldProperty(field, propertyName);
+        field -= base->getFieldCount();
+    }
+    switch (field) {
+        default: return nullptr;
+    }
+}
+
+int VehicleDequeueDescriptor::getFieldArraySize(omnetpp::any_ptr object, int field) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldArraySize(object, field);
+        field -= base->getFieldCount();
+    }
+    VehicleDequeue *pp = omnetpp::fromAnyPtr<VehicleDequeue>(object); (void)pp;
+    switch (field) {
+        default: return 0;
+    }
+}
+
+void VehicleDequeueDescriptor::setFieldArraySize(omnetpp::any_ptr object, int field, int size) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount()){
+            base->setFieldArraySize(object, field, size);
+            return;
+        }
+        field -= base->getFieldCount();
+    }
+    VehicleDequeue *pp = omnetpp::fromAnyPtr<VehicleDequeue>(object); (void)pp;
+    switch (field) {
+        default: throw omnetpp::cRuntimeError("Cannot set array size of field %d of class 'VehicleDequeue'", field);
+    }
+}
+
+const char *VehicleDequeueDescriptor::getFieldDynamicTypeString(omnetpp::any_ptr object, int field, int i) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldDynamicTypeString(object,field,i);
+        field -= base->getFieldCount();
+    }
+    VehicleDequeue *pp = omnetpp::fromAnyPtr<VehicleDequeue>(object); (void)pp;
+    switch (field) {
+        default: return nullptr;
+    }
+}
+
+std::string VehicleDequeueDescriptor::getFieldValueAsString(omnetpp::any_ptr object, int field, int i) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldValueAsString(object,field,i);
+        field -= base->getFieldCount();
+    }
+    VehicleDequeue *pp = omnetpp::fromAnyPtr<VehicleDequeue>(object); (void)pp;
+    switch (field) {
+        default: return "";
+    }
+}
+
+void VehicleDequeueDescriptor::setFieldValueAsString(omnetpp::any_ptr object, int field, int i, const char *value) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount()){
+            base->setFieldValueAsString(object, field, i, value);
+            return;
+        }
+        field -= base->getFieldCount();
+    }
+    VehicleDequeue *pp = omnetpp::fromAnyPtr<VehicleDequeue>(object); (void)pp;
+    switch (field) {
+        default: throw omnetpp::cRuntimeError("Cannot set field %d of class 'VehicleDequeue'", field);
+    }
+}
+
+omnetpp::cValue VehicleDequeueDescriptor::getFieldValue(omnetpp::any_ptr object, int field, int i) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldValue(object,field,i);
+        field -= base->getFieldCount();
+    }
+    VehicleDequeue *pp = omnetpp::fromAnyPtr<VehicleDequeue>(object); (void)pp;
+    switch (field) {
+        default: throw omnetpp::cRuntimeError("Cannot return field %d of class 'VehicleDequeue' as cValue -- field index out of range?", field);
+    }
+}
+
+void VehicleDequeueDescriptor::setFieldValue(omnetpp::any_ptr object, int field, int i, const omnetpp::cValue& value) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount()){
+            base->setFieldValue(object, field, i, value);
+            return;
+        }
+        field -= base->getFieldCount();
+    }
+    VehicleDequeue *pp = omnetpp::fromAnyPtr<VehicleDequeue>(object); (void)pp;
+    switch (field) {
+        default: throw omnetpp::cRuntimeError("Cannot set field %d of class 'VehicleDequeue'", field);
+    }
+}
+
+const char *VehicleDequeueDescriptor::getFieldStructName(int field) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldStructName(field);
+        field -= base->getFieldCount();
+    }
+    return nullptr;
+}
+
+omnetpp::any_ptr VehicleDequeueDescriptor::getFieldStructValuePointer(omnetpp::any_ptr object, int field, int i) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldStructValuePointer(object, field, i);
+        field -= base->getFieldCount();
+    }
+    VehicleDequeue *pp = omnetpp::fromAnyPtr<VehicleDequeue>(object); (void)pp;
+    switch (field) {
+        default: return omnetpp::any_ptr(nullptr);
+    }
+}
+
+void VehicleDequeueDescriptor::setFieldStructValuePointer(omnetpp::any_ptr object, int field, int i, omnetpp::any_ptr ptr) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount()){
+            base->setFieldStructValuePointer(object, field, i, ptr);
+            return;
+        }
+        field -= base->getFieldCount();
+    }
+    VehicleDequeue *pp = omnetpp::fromAnyPtr<VehicleDequeue>(object); (void)pp;
+    switch (field) {
+        default: throw omnetpp::cRuntimeError("Cannot set field %d of class 'VehicleDequeue'", field);
+    }
+}
+
+Register_Class(VehicleFromQueue)
+
+VehicleFromQueue::VehicleFromQueue(const char *name, short kind) : ::omnetpp::cMessage(name, kind)
+{
+}
+
+VehicleFromQueue::VehicleFromQueue(const VehicleFromQueue& other) : ::omnetpp::cMessage(other)
+{
+    copy(other);
+}
+
+VehicleFromQueue::~VehicleFromQueue()
+{
+}
+
+VehicleFromQueue& VehicleFromQueue::operator=(const VehicleFromQueue& other)
+{
+    if (this == &other) return *this;
+    ::omnetpp::cMessage::operator=(other);
+    copy(other);
+    return *this;
+}
+
+void VehicleFromQueue::copy(const VehicleFromQueue& other)
+{
+    this->vehicleId = other.vehicleId;
+    this->arrivalTime = other.arrivalTime;
+    this->queueEntryTime = other.queueEntryTime;
+    this->plannedDuration = other.plannedDuration;
+}
+
+void VehicleFromQueue::parsimPack(omnetpp::cCommBuffer *b) const
+{
+    ::omnetpp::cMessage::parsimPack(b);
+    doParsimPacking(b,this->vehicleId);
+    doParsimPacking(b,this->arrivalTime);
+    doParsimPacking(b,this->queueEntryTime);
+    doParsimPacking(b,this->plannedDuration);
+}
+
+void VehicleFromQueue::parsimUnpack(omnetpp::cCommBuffer *b)
+{
+    ::omnetpp::cMessage::parsimUnpack(b);
+    doParsimUnpacking(b,this->vehicleId);
+    doParsimUnpacking(b,this->arrivalTime);
+    doParsimUnpacking(b,this->queueEntryTime);
+    doParsimUnpacking(b,this->plannedDuration);
+}
+
+int VehicleFromQueue::getVehicleId() const
+{
+    return this->vehicleId;
+}
+
+void VehicleFromQueue::setVehicleId(int vehicleId)
+{
+    this->vehicleId = vehicleId;
+}
+
+omnetpp::simtime_t VehicleFromQueue::getArrivalTime() const
+{
+    return this->arrivalTime;
+}
+
+void VehicleFromQueue::setArrivalTime(omnetpp::simtime_t arrivalTime)
+{
+    this->arrivalTime = arrivalTime;
+}
+
+omnetpp::simtime_t VehicleFromQueue::getQueueEntryTime() const
+{
+    return this->queueEntryTime;
+}
+
+void VehicleFromQueue::setQueueEntryTime(omnetpp::simtime_t queueEntryTime)
+{
+    this->queueEntryTime = queueEntryTime;
+}
+
+double VehicleFromQueue::getPlannedDuration() const
+{
+    return this->plannedDuration;
+}
+
+void VehicleFromQueue::setPlannedDuration(double plannedDuration)
+{
+    this->plannedDuration = plannedDuration;
+}
+
+class VehicleFromQueueDescriptor : public omnetpp::cClassDescriptor
+{
+  private:
+    mutable const char **propertyNames;
+    enum FieldConstants {
+        FIELD_vehicleId,
+        FIELD_arrivalTime,
+        FIELD_queueEntryTime,
+        FIELD_plannedDuration,
+    };
+  public:
+    VehicleFromQueueDescriptor();
+    virtual ~VehicleFromQueueDescriptor();
+
+    virtual bool doesSupport(omnetpp::cObject *obj) const override;
+    virtual const char **getPropertyNames() const override;
+    virtual const char *getProperty(const char *propertyName) const override;
+    virtual int getFieldCount() const override;
+    virtual const char *getFieldName(int field) const override;
+    virtual int findField(const char *fieldName) const override;
+    virtual unsigned int getFieldTypeFlags(int field) const override;
+    virtual const char *getFieldTypeString(int field) const override;
+    virtual const char **getFieldPropertyNames(int field) const override;
+    virtual const char *getFieldProperty(int field, const char *propertyName) const override;
+    virtual int getFieldArraySize(omnetpp::any_ptr object, int field) const override;
+    virtual void setFieldArraySize(omnetpp::any_ptr object, int field, int size) const override;
+
+    virtual const char *getFieldDynamicTypeString(omnetpp::any_ptr object, int field, int i) const override;
+    virtual std::string getFieldValueAsString(omnetpp::any_ptr object, int field, int i) const override;
+    virtual void setFieldValueAsString(omnetpp::any_ptr object, int field, int i, const char *value) const override;
+    virtual omnetpp::cValue getFieldValue(omnetpp::any_ptr object, int field, int i) const override;
+    virtual void setFieldValue(omnetpp::any_ptr object, int field, int i, const omnetpp::cValue& value) const override;
+
+    virtual const char *getFieldStructName(int field) const override;
+    virtual omnetpp::any_ptr getFieldStructValuePointer(omnetpp::any_ptr object, int field, int i) const override;
+    virtual void setFieldStructValuePointer(omnetpp::any_ptr object, int field, int i, omnetpp::any_ptr ptr) const override;
+};
+
+Register_ClassDescriptor(VehicleFromQueueDescriptor)
+
+VehicleFromQueueDescriptor::VehicleFromQueueDescriptor() : omnetpp::cClassDescriptor(omnetpp::opp_typename(typeid(VehicleFromQueue)), "omnetpp::cMessage")
+{
+    propertyNames = nullptr;
+}
+
+VehicleFromQueueDescriptor::~VehicleFromQueueDescriptor()
+{
+    delete[] propertyNames;
+}
+
+bool VehicleFromQueueDescriptor::doesSupport(omnetpp::cObject *obj) const
+{
+    return dynamic_cast<VehicleFromQueue *>(obj)!=nullptr;
+}
+
+const char **VehicleFromQueueDescriptor::getPropertyNames() const
+{
+    if (!propertyNames) {
+        static const char *names[] = {  nullptr };
+        omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+        const char **baseNames = base ? base->getPropertyNames() : nullptr;
+        propertyNames = mergeLists(baseNames, names);
+    }
+    return propertyNames;
+}
+
+const char *VehicleFromQueueDescriptor::getProperty(const char *propertyName) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    return base ? base->getProperty(propertyName) : nullptr;
+}
+
+int VehicleFromQueueDescriptor::getFieldCount() const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    return base ? 4+base->getFieldCount() : 4;
+}
+
+unsigned int VehicleFromQueueDescriptor::getFieldTypeFlags(int field) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldTypeFlags(field);
+        field -= base->getFieldCount();
+    }
+    static unsigned int fieldTypeFlags[] = {
+        FD_ISEDITABLE,    // FIELD_vehicleId
+        FD_ISEDITABLE,    // FIELD_arrivalTime
+        FD_ISEDITABLE,    // FIELD_queueEntryTime
+        FD_ISEDITABLE,    // FIELD_plannedDuration
+    };
+    return (field >= 0 && field < 4) ? fieldTypeFlags[field] : 0;
+}
+
+const char *VehicleFromQueueDescriptor::getFieldName(int field) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldName(field);
+        field -= base->getFieldCount();
+    }
+    static const char *fieldNames[] = {
+        "vehicleId",
+        "arrivalTime",
+        "queueEntryTime",
+        "plannedDuration",
+    };
+    return (field >= 0 && field < 4) ? fieldNames[field] : nullptr;
+}
+
+int VehicleFromQueueDescriptor::findField(const char *fieldName) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    int baseIndex = base ? base->getFieldCount() : 0;
+    if (strcmp(fieldName, "vehicleId") == 0) return baseIndex + 0;
+    if (strcmp(fieldName, "arrivalTime") == 0) return baseIndex + 1;
+    if (strcmp(fieldName, "queueEntryTime") == 0) return baseIndex + 2;
+    if (strcmp(fieldName, "plannedDuration") == 0) return baseIndex + 3;
+    return base ? base->findField(fieldName) : -1;
+}
+
+const char *VehicleFromQueueDescriptor::getFieldTypeString(int field) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldTypeString(field);
+        field -= base->getFieldCount();
+    }
+    static const char *fieldTypeStrings[] = {
+        "int",    // FIELD_vehicleId
+        "omnetpp::simtime_t",    // FIELD_arrivalTime
+        "omnetpp::simtime_t",    // FIELD_queueEntryTime
+        "double",    // FIELD_plannedDuration
+    };
+    return (field >= 0 && field < 4) ? fieldTypeStrings[field] : nullptr;
+}
+
+const char **VehicleFromQueueDescriptor::getFieldPropertyNames(int field) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldPropertyNames(field);
+        field -= base->getFieldCount();
+    }
+    switch (field) {
+        default: return nullptr;
+    }
+}
+
+const char *VehicleFromQueueDescriptor::getFieldProperty(int field, const char *propertyName) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldProperty(field, propertyName);
+        field -= base->getFieldCount();
+    }
+    switch (field) {
+        default: return nullptr;
+    }
+}
+
+int VehicleFromQueueDescriptor::getFieldArraySize(omnetpp::any_ptr object, int field) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldArraySize(object, field);
+        field -= base->getFieldCount();
+    }
+    VehicleFromQueue *pp = omnetpp::fromAnyPtr<VehicleFromQueue>(object); (void)pp;
+    switch (field) {
+        default: return 0;
+    }
+}
+
+void VehicleFromQueueDescriptor::setFieldArraySize(omnetpp::any_ptr object, int field, int size) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount()){
+            base->setFieldArraySize(object, field, size);
+            return;
+        }
+        field -= base->getFieldCount();
+    }
+    VehicleFromQueue *pp = omnetpp::fromAnyPtr<VehicleFromQueue>(object); (void)pp;
+    switch (field) {
+        default: throw omnetpp::cRuntimeError("Cannot set array size of field %d of class 'VehicleFromQueue'", field);
+    }
+}
+
+const char *VehicleFromQueueDescriptor::getFieldDynamicTypeString(omnetpp::any_ptr object, int field, int i) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldDynamicTypeString(object,field,i);
+        field -= base->getFieldCount();
+    }
+    VehicleFromQueue *pp = omnetpp::fromAnyPtr<VehicleFromQueue>(object); (void)pp;
+    switch (field) {
+        default: return nullptr;
+    }
+}
+
+std::string VehicleFromQueueDescriptor::getFieldValueAsString(omnetpp::any_ptr object, int field, int i) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldValueAsString(object,field,i);
+        field -= base->getFieldCount();
+    }
+    VehicleFromQueue *pp = omnetpp::fromAnyPtr<VehicleFromQueue>(object); (void)pp;
+    switch (field) {
+        case FIELD_vehicleId: return long2string(pp->getVehicleId());
+        case FIELD_arrivalTime: return simtime2string(pp->getArrivalTime());
+        case FIELD_queueEntryTime: return simtime2string(pp->getQueueEntryTime());
+        case FIELD_plannedDuration: return double2string(pp->getPlannedDuration());
+        default: return "";
+    }
+}
+
+void VehicleFromQueueDescriptor::setFieldValueAsString(omnetpp::any_ptr object, int field, int i, const char *value) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount()){
+            base->setFieldValueAsString(object, field, i, value);
+            return;
+        }
+        field -= base->getFieldCount();
+    }
+    VehicleFromQueue *pp = omnetpp::fromAnyPtr<VehicleFromQueue>(object); (void)pp;
+    switch (field) {
+        case FIELD_vehicleId: pp->setVehicleId(string2long(value)); break;
+        case FIELD_arrivalTime: pp->setArrivalTime(string2simtime(value)); break;
+        case FIELD_queueEntryTime: pp->setQueueEntryTime(string2simtime(value)); break;
+        case FIELD_plannedDuration: pp->setPlannedDuration(string2double(value)); break;
+        default: throw omnetpp::cRuntimeError("Cannot set field %d of class 'VehicleFromQueue'", field);
+    }
+}
+
+omnetpp::cValue VehicleFromQueueDescriptor::getFieldValue(omnetpp::any_ptr object, int field, int i) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldValue(object,field,i);
+        field -= base->getFieldCount();
+    }
+    VehicleFromQueue *pp = omnetpp::fromAnyPtr<VehicleFromQueue>(object); (void)pp;
+    switch (field) {
+        case FIELD_vehicleId: return pp->getVehicleId();
+        case FIELD_arrivalTime: return pp->getArrivalTime().dbl();
+        case FIELD_queueEntryTime: return pp->getQueueEntryTime().dbl();
+        case FIELD_plannedDuration: return pp->getPlannedDuration();
+        default: throw omnetpp::cRuntimeError("Cannot return field %d of class 'VehicleFromQueue' as cValue -- field index out of range?", field);
+    }
+}
+
+void VehicleFromQueueDescriptor::setFieldValue(omnetpp::any_ptr object, int field, int i, const omnetpp::cValue& value) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount()){
+            base->setFieldValue(object, field, i, value);
+            return;
+        }
+        field -= base->getFieldCount();
+    }
+    VehicleFromQueue *pp = omnetpp::fromAnyPtr<VehicleFromQueue>(object); (void)pp;
+    switch (field) {
+        case FIELD_vehicleId: pp->setVehicleId(omnetpp::checked_int_cast<int>(value.intValue())); break;
+        case FIELD_arrivalTime: pp->setArrivalTime(value.doubleValue()); break;
+        case FIELD_queueEntryTime: pp->setQueueEntryTime(value.doubleValue()); break;
+        case FIELD_plannedDuration: pp->setPlannedDuration(value.doubleValue()); break;
+        default: throw omnetpp::cRuntimeError("Cannot set field %d of class 'VehicleFromQueue'", field);
+    }
+}
+
+const char *VehicleFromQueueDescriptor::getFieldStructName(int field) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldStructName(field);
+        field -= base->getFieldCount();
+    }
+    switch (field) {
+        default: return nullptr;
+    };
+}
+
+omnetpp::any_ptr VehicleFromQueueDescriptor::getFieldStructValuePointer(omnetpp::any_ptr object, int field, int i) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldStructValuePointer(object, field, i);
+        field -= base->getFieldCount();
+    }
+    VehicleFromQueue *pp = omnetpp::fromAnyPtr<VehicleFromQueue>(object); (void)pp;
+    switch (field) {
+        default: return omnetpp::any_ptr(nullptr);
+    }
+}
+
+void VehicleFromQueueDescriptor::setFieldStructValuePointer(omnetpp::any_ptr object, int field, int i, omnetpp::any_ptr ptr) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount()){
+            base->setFieldStructValuePointer(object, field, i, ptr);
+            return;
+        }
+        field -= base->getFieldCount();
+    }
+    VehicleFromQueue *pp = omnetpp::fromAnyPtr<VehicleFromQueue>(object); (void)pp;
+    switch (field) {
+        default: throw omnetpp::cRuntimeError("Cannot set field %d of class 'VehicleFromQueue'", field);
+    }
+}
+
+Register_Class(AssignmentInProgress)
+
+AssignmentInProgress::AssignmentInProgress(const char *name, short kind) : ::omnetpp::cMessage(name, kind)
+{
+}
+
+AssignmentInProgress::AssignmentInProgress(const AssignmentInProgress& other) : ::omnetpp::cMessage(other)
+{
+    copy(other);
+}
+
+AssignmentInProgress::~AssignmentInProgress()
+{
+}
+
+AssignmentInProgress& AssignmentInProgress::operator=(const AssignmentInProgress& other)
+{
+    if (this == &other) return *this;
+    ::omnetpp::cMessage::operator=(other);
+    copy(other);
+    return *this;
+}
+
+void AssignmentInProgress::copy(const AssignmentInProgress& other)
+{
+    this->vehicleId = other.vehicleId;
+    this->slotId = other.slotId;
+    this->assignmentTime = other.assignmentTime;
+}
+
+void AssignmentInProgress::parsimPack(omnetpp::cCommBuffer *b) const
+{
+    ::omnetpp::cMessage::parsimPack(b);
+    doParsimPacking(b,this->vehicleId);
+    doParsimPacking(b,this->slotId);
+    doParsimPacking(b,this->assignmentTime);
+}
+
+void AssignmentInProgress::parsimUnpack(omnetpp::cCommBuffer *b)
+{
+    ::omnetpp::cMessage::parsimUnpack(b);
+    doParsimUnpacking(b,this->vehicleId);
+    doParsimUnpacking(b,this->slotId);
+    doParsimUnpacking(b,this->assignmentTime);
+}
+
+int AssignmentInProgress::getVehicleId() const
+{
+    return this->vehicleId;
+}
+
+void AssignmentInProgress::setVehicleId(int vehicleId)
+{
+    this->vehicleId = vehicleId;
+}
+
+int AssignmentInProgress::getSlotId() const
+{
+    return this->slotId;
+}
+
+void AssignmentInProgress::setSlotId(int slotId)
+{
+    this->slotId = slotId;
+}
+
+omnetpp::simtime_t AssignmentInProgress::getAssignmentTime() const
+{
+    return this->assignmentTime;
+}
+
+void AssignmentInProgress::setAssignmentTime(omnetpp::simtime_t assignmentTime)
+{
+    this->assignmentTime = assignmentTime;
+}
+
+class AssignmentInProgressDescriptor : public omnetpp::cClassDescriptor
+{
+  private:
+    mutable const char **propertyNames;
+    enum FieldConstants {
+        FIELD_vehicleId,
+        FIELD_slotId,
+        FIELD_assignmentTime,
+    };
+  public:
+    AssignmentInProgressDescriptor();
+    virtual ~AssignmentInProgressDescriptor();
+
+    virtual bool doesSupport(omnetpp::cObject *obj) const override;
+    virtual const char **getPropertyNames() const override;
+    virtual const char *getProperty(const char *propertyName) const override;
+    virtual int getFieldCount() const override;
+    virtual const char *getFieldName(int field) const override;
+    virtual int findField(const char *fieldName) const override;
+    virtual unsigned int getFieldTypeFlags(int field) const override;
+    virtual const char *getFieldTypeString(int field) const override;
+    virtual const char **getFieldPropertyNames(int field) const override;
+    virtual const char *getFieldProperty(int field, const char *propertyName) const override;
+    virtual int getFieldArraySize(omnetpp::any_ptr object, int field) const override;
+    virtual void setFieldArraySize(omnetpp::any_ptr object, int field, int size) const override;
+
+    virtual const char *getFieldDynamicTypeString(omnetpp::any_ptr object, int field, int i) const override;
+    virtual std::string getFieldValueAsString(omnetpp::any_ptr object, int field, int i) const override;
+    virtual void setFieldValueAsString(omnetpp::any_ptr object, int field, int i, const char *value) const override;
+    virtual omnetpp::cValue getFieldValue(omnetpp::any_ptr object, int field, int i) const override;
+    virtual void setFieldValue(omnetpp::any_ptr object, int field, int i, const omnetpp::cValue& value) const override;
+
+    virtual const char *getFieldStructName(int field) const override;
+    virtual omnetpp::any_ptr getFieldStructValuePointer(omnetpp::any_ptr object, int field, int i) const override;
+    virtual void setFieldStructValuePointer(omnetpp::any_ptr object, int field, int i, omnetpp::any_ptr ptr) const override;
+};
+
+Register_ClassDescriptor(AssignmentInProgressDescriptor)
+
+AssignmentInProgressDescriptor::AssignmentInProgressDescriptor() : omnetpp::cClassDescriptor(omnetpp::opp_typename(typeid(AssignmentInProgress)), "omnetpp::cMessage")
+{
+    propertyNames = nullptr;
+}
+
+AssignmentInProgressDescriptor::~AssignmentInProgressDescriptor()
+{
+    delete[] propertyNames;
+}
+
+bool AssignmentInProgressDescriptor::doesSupport(omnetpp::cObject *obj) const
+{
+    return dynamic_cast<AssignmentInProgress *>(obj)!=nullptr;
+}
+
+const char **AssignmentInProgressDescriptor::getPropertyNames() const
+{
+    if (!propertyNames) {
+        static const char *names[] = {  nullptr };
+        omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+        const char **baseNames = base ? base->getPropertyNames() : nullptr;
+        propertyNames = mergeLists(baseNames, names);
+    }
+    return propertyNames;
+}
+
+const char *AssignmentInProgressDescriptor::getProperty(const char *propertyName) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    return base ? base->getProperty(propertyName) : nullptr;
+}
+
+int AssignmentInProgressDescriptor::getFieldCount() const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    return base ? 3+base->getFieldCount() : 3;
+}
+
+unsigned int AssignmentInProgressDescriptor::getFieldTypeFlags(int field) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldTypeFlags(field);
+        field -= base->getFieldCount();
+    }
+    static unsigned int fieldTypeFlags[] = {
+        FD_ISEDITABLE,    // FIELD_vehicleId
+        FD_ISEDITABLE,    // FIELD_slotId
+        FD_ISEDITABLE,    // FIELD_assignmentTime
+    };
+    return (field >= 0 && field < 3) ? fieldTypeFlags[field] : 0;
+}
+
+const char *AssignmentInProgressDescriptor::getFieldName(int field) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldName(field);
+        field -= base->getFieldCount();
+    }
+    static const char *fieldNames[] = {
+        "vehicleId",
+        "slotId",
+        "assignmentTime",
+    };
+    return (field >= 0 && field < 3) ? fieldNames[field] : nullptr;
+}
+
+int AssignmentInProgressDescriptor::findField(const char *fieldName) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    int baseIndex = base ? base->getFieldCount() : 0;
+    if (strcmp(fieldName, "vehicleId") == 0) return baseIndex + 0;
+    if (strcmp(fieldName, "slotId") == 0) return baseIndex + 1;
+    if (strcmp(fieldName, "assignmentTime") == 0) return baseIndex + 2;
+    return base ? base->findField(fieldName) : -1;
+}
+
+const char *AssignmentInProgressDescriptor::getFieldTypeString(int field) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldTypeString(field);
+        field -= base->getFieldCount();
+    }
+    static const char *fieldTypeStrings[] = {
+        "int",    // FIELD_vehicleId
+        "int",    // FIELD_slotId
+        "omnetpp::simtime_t",    // FIELD_assignmentTime
+    };
+    return (field >= 0 && field < 3) ? fieldTypeStrings[field] : nullptr;
+}
+
+const char **AssignmentInProgressDescriptor::getFieldPropertyNames(int field) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldPropertyNames(field);
+        field -= base->getFieldCount();
+    }
+    switch (field) {
+        default: return nullptr;
+    }
+}
+
+const char *AssignmentInProgressDescriptor::getFieldProperty(int field, const char *propertyName) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldProperty(field, propertyName);
+        field -= base->getFieldCount();
+    }
+    switch (field) {
+        default: return nullptr;
+    }
+}
+
+int AssignmentInProgressDescriptor::getFieldArraySize(omnetpp::any_ptr object, int field) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldArraySize(object, field);
+        field -= base->getFieldCount();
+    }
+    AssignmentInProgress *pp = omnetpp::fromAnyPtr<AssignmentInProgress>(object); (void)pp;
+    switch (field) {
+        default: return 0;
+    }
+}
+
+void AssignmentInProgressDescriptor::setFieldArraySize(omnetpp::any_ptr object, int field, int size) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount()){
+            base->setFieldArraySize(object, field, size);
+            return;
+        }
+        field -= base->getFieldCount();
+    }
+    AssignmentInProgress *pp = omnetpp::fromAnyPtr<AssignmentInProgress>(object); (void)pp;
+    switch (field) {
+        default: throw omnetpp::cRuntimeError("Cannot set array size of field %d of class 'AssignmentInProgress'", field);
+    }
+}
+
+const char *AssignmentInProgressDescriptor::getFieldDynamicTypeString(omnetpp::any_ptr object, int field, int i) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldDynamicTypeString(object,field,i);
+        field -= base->getFieldCount();
+    }
+    AssignmentInProgress *pp = omnetpp::fromAnyPtr<AssignmentInProgress>(object); (void)pp;
+    switch (field) {
+        default: return nullptr;
+    }
+}
+
+std::string AssignmentInProgressDescriptor::getFieldValueAsString(omnetpp::any_ptr object, int field, int i) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldValueAsString(object,field,i);
+        field -= base->getFieldCount();
+    }
+    AssignmentInProgress *pp = omnetpp::fromAnyPtr<AssignmentInProgress>(object); (void)pp;
+    switch (field) {
+        case FIELD_vehicleId: return long2string(pp->getVehicleId());
+        case FIELD_slotId: return long2string(pp->getSlotId());
+        case FIELD_assignmentTime: return simtime2string(pp->getAssignmentTime());
+        default: return "";
+    }
+}
+
+void AssignmentInProgressDescriptor::setFieldValueAsString(omnetpp::any_ptr object, int field, int i, const char *value) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount()){
+            base->setFieldValueAsString(object, field, i, value);
+            return;
+        }
+        field -= base->getFieldCount();
+    }
+    AssignmentInProgress *pp = omnetpp::fromAnyPtr<AssignmentInProgress>(object); (void)pp;
+    switch (field) {
+        case FIELD_vehicleId: pp->setVehicleId(string2long(value)); break;
+        case FIELD_slotId: pp->setSlotId(string2long(value)); break;
+        case FIELD_assignmentTime: pp->setAssignmentTime(string2simtime(value)); break;
+        default: throw omnetpp::cRuntimeError("Cannot set field %d of class 'AssignmentInProgress'", field);
+    }
+}
+
+omnetpp::cValue AssignmentInProgressDescriptor::getFieldValue(omnetpp::any_ptr object, int field, int i) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldValue(object,field,i);
+        field -= base->getFieldCount();
+    }
+    AssignmentInProgress *pp = omnetpp::fromAnyPtr<AssignmentInProgress>(object); (void)pp;
+    switch (field) {
+        case FIELD_vehicleId: return pp->getVehicleId();
+        case FIELD_slotId: return pp->getSlotId();
+        case FIELD_assignmentTime: return pp->getAssignmentTime().dbl();
+        default: throw omnetpp::cRuntimeError("Cannot return field %d of class 'AssignmentInProgress' as cValue -- field index out of range?", field);
+    }
+}
+
+void AssignmentInProgressDescriptor::setFieldValue(omnetpp::any_ptr object, int field, int i, const omnetpp::cValue& value) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount()){
+            base->setFieldValue(object, field, i, value);
+            return;
+        }
+        field -= base->getFieldCount();
+    }
+    AssignmentInProgress *pp = omnetpp::fromAnyPtr<AssignmentInProgress>(object); (void)pp;
+    switch (field) {
+        case FIELD_vehicleId: pp->setVehicleId(omnetpp::checked_int_cast<int>(value.intValue())); break;
+        case FIELD_slotId: pp->setSlotId(omnetpp::checked_int_cast<int>(value.intValue())); break;
+        case FIELD_assignmentTime: pp->setAssignmentTime(value.doubleValue()); break;
+        default: throw omnetpp::cRuntimeError("Cannot set field %d of class 'AssignmentInProgress'", field);
+    }
+}
+
+const char *AssignmentInProgressDescriptor::getFieldStructName(int field) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldStructName(field);
+        field -= base->getFieldCount();
+    }
+    switch (field) {
+        default: return nullptr;
+    };
+}
+
+omnetpp::any_ptr AssignmentInProgressDescriptor::getFieldStructValuePointer(omnetpp::any_ptr object, int field, int i) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount())
+            return base->getFieldStructValuePointer(object, field, i);
+        field -= base->getFieldCount();
+    }
+    AssignmentInProgress *pp = omnetpp::fromAnyPtr<AssignmentInProgress>(object); (void)pp;
+    switch (field) {
+        default: return omnetpp::any_ptr(nullptr);
+    }
+}
+
+void AssignmentInProgressDescriptor::setFieldStructValuePointer(omnetpp::any_ptr object, int field, int i, omnetpp::any_ptr ptr) const
+{
+    omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
+    if (base) {
+        if (field < base->getFieldCount()){
+            base->setFieldStructValuePointer(object, field, i, ptr);
+            return;
+        }
+        field -= base->getFieldCount();
+    }
+    AssignmentInProgress *pp = omnetpp::fromAnyPtr<AssignmentInProgress>(object); (void)pp;
+    switch (field) {
+        default: throw omnetpp::cRuntimeError("Cannot set field %d of class 'AssignmentInProgress'", field);
+    }
+}
+
 namespace omnetpp {
 
 }  // namespace omnetpp

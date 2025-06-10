@@ -1,8 +1,8 @@
 version 3
-run General-0-20250605-21:42:10-26280
+run General-0-20250605-22:06:27-29127
 attr configname General
-attr datetime 20250605-21:42:10
-attr datetimef 20250605-214210
+attr datetime 20250605-22:06:27
+attr datetimef 20250605-220627
 attr experiment General
 attr inifile omnetpp.ini
 attr iterationvars ""
@@ -10,7 +10,7 @@ attr iterationvarsd ""
 attr iterationvarsf ""
 attr measurement ""
 attr network smartparkingsystem.SmartParkingNetwork
-attr processid 26280
+attr processid 29127
 attr repetition 0
 attr replication #0
 attr resultdir results
@@ -25,10 +25,28 @@ config **.parkingLot.avgParkingDuration 1800.0
 config **.parkingLot.simulationTime 7200.0
 config **.parkingLot.sensorMalfunctionRate 0.001
 config **.parkingLot.sensorRepairTime 300.0
+config **.queue.maxQueueSize 50
+config **.queue.displayStrings "\"i=block/queue;is=l\""
+config **.controller.displayStrings "\"i=block/control;is=l\""
+config **.slot[*].displayStrings "\"i=misc/square;is=l\""
 config output-vector-file results/General-0.vec
 config output-scalar-file results/General-0.sca
 config repeat 10
 
+par SmartParkingNetwork.parkingLot.queue typename "\"smartparkingsystem.ParkingQueue\""
+par SmartParkingNetwork.parkingLot.queue maxQueueSize 50
+scalar SmartParkingNetwork.parkingLot.queue vehicleDequeued:count 5
+attr recordingmode count
+attr title "Vehicles Dequeued, count"
+scalar SmartParkingNetwork.parkingLot.queue vehicleQueued:count 21
+attr recordingmode count
+attr title "Vehicles Queued, count"
+scalar SmartParkingNetwork.parkingLot.queue queueLength:mean 10.038461538462
+attr recordingmode mean
+attr title "Queue Length, mean"
+scalar SmartParkingNetwork.parkingLot.queue queueLength:max 18
+attr recordingmode max
+attr title "Queue Length, max"
 par SmartParkingNetwork.parkingLot.controller typename "\"smartparkingsystem.ParkingController\""
 par SmartParkingNetwork.parkingLot.controller numSlots 20
 par SmartParkingNetwork.parkingLot.controller arrivalRate 0.05
@@ -143,84 +161,80 @@ par SmartParkingNetwork.parkingLot avgParkingDuration 1800
 par SmartParkingNetwork.parkingLot simulationTime 7200
 par SmartParkingNetwork.parkingLot sensorMalfunctionRate 0.001
 par SmartParkingNetwork.parkingLot sensorRepairTime 300
-scalar SmartParkingNetwork.parkingLot vehicleDeparture:count 57
+scalar SmartParkingNetwork.parkingLot vehicleDeparture:count 6
 attr recordingmode count
 attr title "Vehicle Departures, count"
-scalar SmartParkingNetwork.parkingLot vehicleArrival:count 271
+scalar SmartParkingNetwork.parkingLot vehicleArrival:count 42
 attr recordingmode count
 attr title "Vehicle Arrivals, count"
-scalar SmartParkingNetwork.parkingLot utilizationRate:mean 0.96783536585366
+scalar SmartParkingNetwork.parkingLot utilizationRate:mean 0.80357142857143
 attr recordingmode mean
 attr title "Utilization Rate, mean"
-scalar SmartParkingNetwork.parkingLot waitingTime:mean 1047.2027248571
+scalar SmartParkingNetwork.parkingLot waitingTime:mean 28.049258366475
 attr recordingmode mean
 attr title "Waiting Time, mean"
 statistic SmartParkingNetwork.parkingLot waitingTime:histogram
-field count 57
-field mean 1047.2027248571
-field stddev 1108.8404679574
+field count 6
+field mean 28.049258366475
+field stddev 68.706370661356
 field min 0
-field max 3731.2097448499
-field sum 59690.555316854
-field sqrsum 131361634.44532
+field max 168.29555019885
+field sum 168.29555019885
+field sqrsum 28323.392216734
 attr recordingmode histogram
 attr title "Waiting Time"
 bin	-inf	0
-bin	0	20
-bin	100	3
+bin	0	5
+bin	5	0
+bin	10	0
+bin	15	0
+bin	20	0
+bin	25	0
+bin	30	0
+bin	35	0
+bin	40	0
+bin	45	0
+bin	50	0
+bin	55	0
+bin	60	0
+bin	65	0
+bin	70	0
+bin	75	0
+bin	80	0
+bin	85	0
+bin	90	0
+bin	95	0
+bin	100	0
+bin	105	0
+bin	110	0
+bin	115	0
+bin	120	0
+bin	125	0
+bin	130	0
+bin	135	0
+bin	140	0
+bin	145	0
+bin	150	0
+bin	155	0
+bin	160	0
+bin	165	1
+bin	170	0
+bin	175	0
+bin	180	0
+bin	185	0
+bin	190	0
+bin	195	0
 bin	200	0
-bin	300	1
-bin	400	2
-bin	500	1
-bin	600	1
-bin	700	1
-bin	800	2
-bin	900	1
-bin	1000	1
-bin	1100	1
-bin	1200	3
-bin	1300	0
-bin	1400	1
-bin	1500	0
-bin	1600	3
-bin	1700	1
-bin	1800	1
-bin	1900	0
-bin	2000	0
-bin	2100	1
-bin	2200	5
-bin	2300	0
-bin	2400	3
-bin	2500	0
-bin	2600	0
-bin	2700	1
-bin	2800	1
-bin	2900	0
-bin	3000	0
-bin	3100	0
-bin	3200	0
-bin	3300	0
-bin	3400	1
-bin	3500	0
-bin	3600	1
-bin	3700	1
-bin	3800	0
-bin	3900	0
-bin	4000	0
-bin	4100	0
-bin	4200	0
-bin	4300	0
-bin	4400	0
-bin	4500	0
-bin	4600	0
-bin	4700	0
-scalar SmartParkingNetwork.parkingLot occupiedSlots:mean 19.356707317073
+bin	205	0
+bin	210	0
+bin	215	0
+scalar SmartParkingNetwork.parkingLot occupiedSlots:mean 16.071428571429
 attr recordingmode mean
 attr title "Occupied Slots, mean"
-scalar SmartParkingNetwork.parkingLot queueLength:mean 94.551829268293
+scalar SmartParkingNetwork.parkingLot queueLength:mean 10.038461538462
 attr recordingmode mean
 attr title "Queue Length, mean"
-scalar SmartParkingNetwork.parkingLot queueLength:max 197
+scalar SmartParkingNetwork.parkingLot queueLength:max 18
 attr recordingmode max
 attr title "Queue Length, max"
 par SmartParkingNetwork typename "\"smartparkingsystem.SmartParkingNetwork\""
