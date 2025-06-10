@@ -1,0 +1,3 @@
+package smartparkingsystem;
+
+@license(LGPL);
