@@ -1,0 +1,138 @@
+file 64291 1749150802                                           
+version 3
+run SensorProblems-0-20250605-22:12:00-29882
+attr configname SensorProblems
+attr datetime 20250605-22:12:00
+attr datetimef 20250605-221200
+attr experiment SensorProblems
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network smartparkingsystem.SmartParkingNetwork
+attr processid 29882
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config description "Scenario with frequent sensor malfunctions"
+config **.parkingLot.numSlots 15
+config **.parkingLot.arrivalRate 0.06
+config **.parkingLot.sensorMalfunctionRate 0.01
+config **.parkingLot.sensorRepairTime 600.0
+config network smartparkingsystem.SmartParkingNetwork
+config sim-time-limit 7200s
+config seed-set 0
+config **.parkingLot.numSlots 20
+config **.parkingLot.arrivalRate 0.05
+config **.parkingLot.avgParkingDuration 1800.0
+config **.parkingLot.simulationTime 7200.0
+config **.parkingLot.sensorMalfunctionRate 0.001
+config **.parkingLot.sensorRepairTime 300.0
+config **.queue.maxQueueSize 50
+config **.queue.displayStrings "\"i=block/queue;is=l\""
+config **.controller.displayStrings "\"i=block/control;is=l\""
+config **.slot[*].displayStrings "\"i=misc/square;is=l\""
+config output-vector-file results/SensorProblems-0.vec
+config output-scalar-file results/SensorProblems-0.sca
+config repeat 10
+
+vector 0 SmartParkingNetwork.parkingLot vehicleArrival:vector ETV
+attr recordingmode vector
+attr title "Vehicle Arrivals"
+vector 1 SmartParkingNetwork.parkingLot occupiedSlots:vector ETV
+attr recordingmode vector
+attr title "Occupied Slots"
+vector 2 SmartParkingNetwork.parkingLot utilizationRate:vector ETV
+attr recordingmode vector
+attr title "Utilization Rate"
+vector 3 SmartParkingNetwork.parkingLot.slot[0] slotOccupied:vector ETV
+attr recordingmode vector
+attr title "Slot Occupied"
+vector 4 SmartParkingNetwork.parkingLot.slot[1] slotOccupied:vector ETV
+attr recordingmode vector
+attr title "Slot Occupied"
+vector 5 SmartParkingNetwork.parkingLot.slot[2] slotOccupied:vector ETV
+attr recordingmode vector
+attr title "Slot Occupied"
+vector 6 SmartParkingNetwork.parkingLot.slot[3] slotOccupied:vector ETV
+attr recordingmode vector
+attr title "Slot Occupied"
+vector 7 SmartParkingNetwork.parkingLot.slot[4] slotOccupied:vector ETV
+attr recordingmode vector
+attr title "Slot Occupied"
+vector 8 SmartParkingNetwork.parkingLot.slot[5] slotOccupied:vector ETV
+attr recordingmode vector
+attr title "Slot Occupied"
+vector 9 SmartParkingNetwork.parkingLot.slot[6] slotOccupied:vector ETV
+attr recordingmode vector
+attr title "Slot Occupied"
+vector 10 SmartParkingNetwork.parkingLot.slot[7] slotOccupied:vector ETV
+attr recordingmode vector
+attr title "Slot Occupied"
+vector 11 SmartParkingNetwork.parkingLot.slot[8] slotOccupied:vector ETV
+attr recordingmode vector
+attr title "Slot Occupied"
+vector 12 SmartParkingNetwork.parkingLot.slot[9] slotOccupied:vector ETV
+attr recordingmode vector
+attr title "Slot Occupied"
+vector 13 SmartParkingNetwork.parkingLot.slot[10] slotOccupied:vector ETV
+attr recordingmode vector
+attr title "Slot Occupied"
+vector 14 SmartParkingNetwork.parkingLot.slot[11] slotOccupied:vector ETV
+attr recordingmode vector
+attr title "Slot Occupied"
+vector 15 SmartParkingNetwork.parkingLot vehicleDeparture:vector ETV
+attr recordingmode vector
+attr title "Vehicle Departures"
+vector 16 SmartParkingNetwork.parkingLot waitingTime:vector ETV
+attr recordingmode vector
+attr title "Waiting Time"
+vector 17 SmartParkingNetwork.parkingLot.slot[12] slotOccupied:vector ETV
+attr recordingmode vector
+attr title "Slot Occupied"
+vector 18 SmartParkingNetwork.parkingLot.slot[13] slotOccupied:vector ETV
+attr recordingmode vector
+attr title "Slot Occupied"
+vector 19 SmartParkingNetwork.parkingLot.slot[14] slotOccupied:vector ETV
+attr recordingmode vector
+attr title "Slot Occupied"
+vector 20 SmartParkingNetwork.parkingLot.queue queueLength:vector ETV
+attr recordingmode vector
+attr title "Queue Length"
+vector 21 SmartParkingNetwork.parkingLot queueLength:vector ETV
+attr recordingmode vector
+attr title "Queue Length"
+vector 22 SmartParkingNetwork.parkingLot.queue vehicleQueued:vector ETV
+attr recordingmode vector
+attr title "Vehicles Queued"
+vector 23 SmartParkingNetwork.parkingLot.queue vehicleDequeued:vector ETV
+attr recordingmode vector
+attr title "Vehicles Dequeued"
+0	4368 10500 1 1082 0 6280.148685905444 384 0 383 73536 18800704
+1	14868 14442 1 1082 0 6280.148685905444 541 1 15 7892 116190
+2	29310 15721 1 1082 0 6280.148685905444 541 0.066666666666667 1 526.13333333333 516.4
+3	45031 112 2 459 0 2947.497824431727 5 0 1 3 3
+4	45143 177 4 923 20.93217930079 5345.836986612755 7 0 1 4 4
+5	45320 227 6 955 36.31923149197 5469.384240843859 9 0 1 5 5
+6	45547 70 8 569 49.439250491669 3432.5745480566 3 0 1 2 2
+7	45617 283 10 989 58.623391936174 5796.749414073007 11 0 1 6 6
+8	45900 335 12 1027 75.926046947238 5978.919315393663 13 0 1 7 7
+9	46235 72 14 101 85.518033561954 722.204484009494 3 0 1 2 2
+10	46307 291 16 935 122.576773929226 5368.755847324267 11 0 1 6 6
+11	46598 185 18 769 177.825311928031 4610.292816483564 7 0 1 4 4
+12	46783 187 20 975 185.885347010505 5696.742989314433 7 0 1 4 4
+13	46970 186 22 807 212.033615637555 4726.297327308169 7 0 1 4 4
+14	47156 297 24 1039 224.578184192768 6008.947795307964 11 0 1 6 6
+15	47453 1467 26 1061 227.669178296773 6177.383271561422 53 0 61 1502 58956
+16	48920 1939 26 1061 227.669178296773 6177.383271561422 53 0 4434.3024210826 92993.653969018 282831103.16934
+17	50859 241 31 745 281.872966505254 4462.086835305783 9 0 1 5 5
+18	51100 187 33 409 283.101055763005 2580.301759653534 7 0 1 4 4
+19	51287 296 35 1065 284.62040619841 6178.383271561422 11 0 1 6 6
+20	51583 4218 37 1067 284.960832671728 6183.519863107144 154 1 50 6297 287053
+21	55801 4218 37 1067 284.960832671728 6183.519863107144 154 1 50 6297 287053
+22	60019 2819 37 1067 284.960832671728 6183.519863107144 102 16 375 13399 3017853
+23	62838 1452 98 1062 721.204484009494 6177.383271561422 52 16 67 2158 101270
+
